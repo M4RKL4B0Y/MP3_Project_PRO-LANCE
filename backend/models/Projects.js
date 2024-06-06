@@ -43,8 +43,8 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: true,
             references: {
-              model: 'Users', // name of the table
-              key: 'id' // name of the column
+              model: 'Users', 
+              key: 'id' 
             }
           }
 }, {});

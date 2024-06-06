@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
           },
         email: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
           },
           password: {
             type: DataTypes.STRING,
@@ -19,29 +20,22 @@ module.exports = (sequelize, DataTypes) => {
         role: {
             type: DataTypes.ENUM('client', 'freelancer', 'admin'), 
             allowNull: false
-        },
-        user_id: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-            references: {
-                model: 'Users',
-                key: 'id'
-            }
         }
-
     }, {
         hooks: { // hooks used for encryption
-            beforeCreate: (user) => {
+            beforeCreate: async (user) => {
                 const salt = bcrypt.genSaltSync();
                 user.password = bcrypt.hashSync(user.password, salt);
             },
-            beforeUpdate: (user) => {
+            beforeUpdate: async (user) => {
+                if (user.changed('password')) {
                 const salt = bcrypt.genSaltSync();
                 user.password = bcrypt.hashSync(user.password, salt);
             }
         }
     }
-    );
+});
+
     Users.associate = function(models) { 
         Users.hasMany(models.Projects, {foreignKey: 'user_id', as: 'projects'}); // one user has many projects
         Users.hasMany(models.Tasks, {foreignKey: 'user_id', as: 'tasks'}); // one user has many tasks

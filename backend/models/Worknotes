@@ -1,19 +1,19 @@
-'use strict'
-// Import the DataTypes object from 'sequelize' package.
-// DataTypes will be used to define the data types for model attributes.
+'use strict';
+
 const {
     DataTypes
 } = require('sequelize');
 
 module.exports = (sequelize) => {
-    const additional_comment = sequelize.define('Comment', {
-        comment: {
+    const Worknote = sequelize.define('Worknote', {
+        note: {
+
             type: DataTypes.TEXT
         },
-        user_id: {
+        freelacer_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            refernces: {
+            references: {
                 model: 'Projects',
                 key: 'id'
             }
@@ -26,17 +26,17 @@ module.exports = (sequelize) => {
                 key: 'id'
             }
         }
+
     }, {});
 
-    Comment.assocaite = function(models) {
-        Comment.belongsTo(model.User, {
-            foreignKey: 'user_id'
+    Worknote.associate = function(models) {
+        Worknote.belongsTo(model.User, {
+            foreignKey: 'freelancer_id'
         });
-        Comment.belongsTo(models.Project, {
+        Worknote.belongsTo(models.Project, {
             foreignKey: 'project_id'
         });
+
     };
-
-    return Comment;
-
+    return Worknote;
 };
