@@ -1,4 +1,5 @@
 'use strict'
+const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => { 
 
@@ -18,6 +19,14 @@ module.exports = (sequelize, DataTypes) => {
         role: {
             type: DataTypes.ENUM('client', 'freelancer', 'admin'), 
             allowNull: false
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'Users',
+                key: 'id'
+            }
         }
 
     }, {
@@ -34,8 +43,8 @@ module.exports = (sequelize, DataTypes) => {
     }
     );
     Users.associate = function(models) { 
-        Users.hasMany(models.Projects, {foreignKey: 'client_id', as: 'projects'}); // one user has many projects
-        Users.hasMany(models.Tasks, {foreignKey: 'client_id', as: 'tasks'}); // one user has many tasks
+        Users.hasMany(models.Projects, {foreignKey: 'user_id', as: 'projects'}); // one user has many projects
+        Users.hasMany(models.Tasks, {foreignKey: 'user_id', as: 'tasks'}); // one user has many tasks
     };
     return Users;
 };
