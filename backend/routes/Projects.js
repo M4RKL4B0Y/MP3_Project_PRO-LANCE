@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const { Prices, Projects, User, Comments, Index, Profiles, Tasks, Worknotes } = require('../models');
+const upload = require('../middleware/upload');
 
-// Import models
-const { Prices, Projects, User } = require('../models');
+
 
 router.get('/api/prices', async (req, res) => {
     try {
