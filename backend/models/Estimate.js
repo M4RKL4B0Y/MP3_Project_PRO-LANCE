@@ -1,6 +1,6 @@
 'use strict';
 
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
     const Estimate = sequelize.define('Estimate', {  
