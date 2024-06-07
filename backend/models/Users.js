@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => { 
 
-    const Users = sequelize.define('Users', {
+    const User = sequelize.define('User', {
         name: { 
             type: DataTypes.STRING,
             allowNull: false
@@ -24,21 +24,21 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         hooks: { // hooks used for encryption
             beforeCreate: async (user) => {
-                const salt = bcrypt.genSaltSync();
-                user.password = bcrypt.hashSync(user.password, salt);
+                const salt = await bcrypt.genSaltSync();
+                user.password = await bcrypt.hashSync(user.password, salt); //use 'await' for 'bcryot.genSalt' and 'bcrypt.hash' to ensure completion before moving forward 
             },
             beforeUpdate: async (user) => {
                 if (user.changed('password')) {
-                const salt = bcrypt.genSaltSync();
-                user.password = bcrypt.hashSync(user.password, salt);
+                const salt = await bcrypt.genSaltSync();
+                user.password = await bcrypt.hashSync(user.password, salt);
             }
         }
     }
 });
 
-    Users.associate = function(models) { 
-        Users.hasMany(models.Projects, {foreignKey: 'user_id', as: 'projects'}); // one user has many projects
-        Users.hasMany(models.Tasks, {foreignKey: 'user_id', as: 'tasks'}); // one user has many tasks
+    User.associate = function(models) { 
+        User.hasMany(models.Project, {foreignKey: 'user_id', as: 'projects'}); // one user has many projects
+        User.hasMany(models.Task, {foreignKey: 'user_id', as: 'tasks'}); // one user has many tasks
     };
-    return Users;
+    return User;
 };

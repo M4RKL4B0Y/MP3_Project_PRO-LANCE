@@ -2,7 +2,7 @@
 
 const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
-    const Tasks = sequelize.define('Tasks', {
+    const Task = sequelize.define('Task', {
         title: {
             type: DataTypes.STRING,
             allowNull: false
@@ -19,19 +19,16 @@ module.exports = (sequelize) => {
             type: DataTypes.DATE,
             allowNull: false
           },
-          price: {
+          estimate: {
             type: DataTypes.DECIMAL(10,2),
             allowNull: false
           },
-          startDate: {
-            type: DataTypes.DATE,
-            allowNull: false
-          },
+
           client_id: {
             type: DataTypes.INTEGER,
             allowNull: false
           },
-          price_id: {
+          estimate_id: {
             type: DataTypes.INTEGER,
             allowNull: false
           },
@@ -39,16 +36,17 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: true,
             references: {
-              model: 'Users', // name of the table
+              model: 'User', // name of the table
               key: 'id' // name of the column
             }
           }
 }, {});
 //associations
-Tasks.associate = function(models) { 
-    Tasks.belongsTo(models.Users, {foreignKey: 'client_id', as: 'client'});
-    Tasks.belongsTo(models.Users, {foreignKey: 'freelancer_id', as: 'freelancer'});  
-    Tasks.belongsTo(models.Prices, {foreignKey: 'price_id', as: 'price'});
+Task.associate = function(models) { 
+    Task.belongsTo(models.User, { foreignKey: 'client_id', as: 'client'});
+    Task.belongsTo(models.User, { foreignKey: 'freelancer_id', as: 'freelancer'});  
+    Task.hasMany(models.Estimate, { foreignKey: 'task_id', as: 'estimates'});
+    Task.hasMany(models.Invoice, {  foreignKey: 'task_id', as: 'invoices'});
            
 
 };

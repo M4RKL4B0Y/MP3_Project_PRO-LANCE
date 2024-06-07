@@ -2,13 +2,13 @@
 
 const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
-    const Projects = sequelize.define('Projects', {
+    const Project = sequelize.define('Project', {
         title: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false
           },
         description: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false
           },
           startDate: { 
@@ -19,23 +19,15 @@ module.exports = (sequelize) => {
             type: DataTypes.DATE,
             allowNull: false
           },
-          price: {
+          estimate: {
             type: DataTypes.DECIMAL(10,2),
             allowNull: false
           },
-          startDate: {
-            type: DataTypes.DATE,
-            allowNull: false
-          },
-          endDate: {
-            type: DataTypes.DATE,
-            allowNull: false
-          },
-          client_id: {
+            client_id: {
             type: DataTypes.INTEGER,
             allowNull: false
           },
-          price_id: {
+          estimate_id: {
             type: DataTypes.INTEGER,
             allowNull: false
           },
@@ -43,22 +35,23 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: true,
             references: {
-              model: 'Users', 
+              model: 'User', 
               key: 'id' 
             }
           }
 }, {});
 //associations
-Projects.associate = function(models) { 
-    Projects.belongsTo(models.Users, {foreignKey: 'client_id', as: 'client'});
-    Projects.belongsTo(models.Users, {foreignKey: 'freelancer_id', as: 'freelancer'});  
-    Projects.belongsTo(models.Prices, {foreignKey: 'price_id', as: 'price'});
+Project.associate = function(models) { 
+    Project.belongsTo(models.User, {foreignKey: 'client_id', as: 'client'});
+    Project.belongsTo(models.User, {foreignKey: 'freelancer_id', as: 'freelancer'});  
+    Project.hasMany(models.Estimate, {foreignKey: 'project_id', as: 'estimates'});
+    Project.hasMany(models.Invoice, { foreignKey: 'project_id', as: 'invoices'});
+
            
 
 };
 
-return Projects;
+return Project;
 
 };
 
-module.exports = Projects;

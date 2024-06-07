@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Projects',
+                model: 'Project',
                 key: 'id'
             }
         },
@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Projects',
+                model: 'Project',
                 key: 'id'
             }
         }
@@ -30,12 +30,13 @@ module.exports = (sequelize) => {
     }, {});
 
     Worknote.associate = function(models) {
-        Worknote.belongsTo(model.User, {
+        Worknote.belongsTo(model.Users, {
             foreignKey: 'freelancer_id'
         });
         Worknote.belongsTo(models.Project, {
             foreignKey: 'project_id'
         });
+        Worknote.belongsTo(models.Tasks)
 
     };
     return Worknote;

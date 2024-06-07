@@ -3,7 +3,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    const Users = sequelize.define('Users', {
+    const Profile  = sequelize.define('Profile', {
         title: { 
             type: DataTypes.STRING,
             allowNull: false
@@ -44,10 +44,10 @@ module.exports = (sequelize) => {
 
     }, {});
     
-  Users.associate = function(models) {
-        Users.hasMany(models.Projects, {foreignKey: 'user_id', as: 'projects'});
+  Profile.associate = function(models) {
+        Profile.hasMany(models.Projects, {foreignKey: 'user_id', as: 'projects'});
     }
 
-    module.exports = Users;
+    return Profile;
 
 };
