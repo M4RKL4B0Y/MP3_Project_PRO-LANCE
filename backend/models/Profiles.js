@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
           },
-          User: {
+          freelancer_id: {
             type: DataTypes.STRING,
             allowNull: false
           },

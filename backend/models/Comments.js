@@ -22,7 +22,17 @@ module.exports = (sequelize) => {
             references: {
                 model: 'Project',
                 key: 'id'
-            }
+            },
+            createdAt: {
+                allowNull: false,
+                type: DataTypes.DATE,
+                defaultValue: Sequelize.fn('NOW')
+              },
+              updatedAt: {
+                allowNull: false,
+                type: DataTypes.DATE,
+                defaultValue: Sequelize.fn('NOW')
+              }
         }
     }, {});
 
