@@ -3,18 +3,18 @@ import Client from "./forms/ClientForm";
 import Project from "./forms/ProjectForm";
 import Request from "./forms/RequestForm";
 import Invoice from "./forms/InvoiceForm";
-// import Submit from "./components/Submit";
+import Submit from "./components/Submit";
 // import Button from "./components/Button";
 
 function App() {
   return (
     <div className="App">
-      <Request />
       <Prolancer />
+      {/* <Request />
       <Client />
       <Project />
-      <Invoice />
-      {/* <Submit /> */}
+      <Invoice /> */}
+      <Submit />
 
       {/* <Button
            freelancer={freelancer}

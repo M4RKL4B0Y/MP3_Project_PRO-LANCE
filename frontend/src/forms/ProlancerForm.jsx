@@ -101,9 +101,9 @@ function Prolancer() {
         </form>
       </div>
 
-      <div className="submit">
+      {/* <div className="submit">
         <button type="submit">Submit</button>
-      </div>
+      </div> */}
     </main>
   );
 }
