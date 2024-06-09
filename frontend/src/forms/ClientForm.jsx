@@ -1,27 +1,64 @@
 function Client() {
   return (
     <main>
-      <h1>Pro-Lancer Profile</h1>
+      <h1>Client Profile</h1>
 
       <h2>Project</h2>
 
       <div className="project">
         <form>
-          <input name="project" type="text" placeholder="Project" />
-          <input name="projecttype" type="text" placeholder="Type of Project" />
-          <input name="location" type="text" placeholder="Location" />
-          <input name="budget" type="text" placeholder="Budget" />
+          <div>
+            <input name="project" type="text" placeholder="Project" />
+          </div>
+
+          <div>
+            <input
+              name="projecttype"
+              type="text"
+              placeholder="Type of Project"
+            />
+          </div>
+
+          <div>
+            <input name="projectduration" type="text" placeholder="Duration" />
+          </div>
+
+          <div>
+            <input name="location" type="text" placeholder="Location" />
+          </div>
+
+          <div>
+            <input name="budget" type="text" placeholder="Budget" />
+          </div>
         </form>
       </div>
+{/* 
+      <h2>Scope of Work</h2>
+
+      <div>
+        <textarea
+          name="workscope"
+          type="textfeild"
+          placeholder="Scope of Work"
+        />
+      </div> */}
 
       <h2>Contact</h2>
 
       <div className="contact">
         <form>
-          <input name="firstname" type="text" placeholder="First Name" />
-          <input name="lastname" type="text" placeholder="Last Name" />
-          <input name="phone" type="text" placeholder="Phone" />
-          <input name="email" type="email" placeholder="Email" />
+          <div>
+            <input name="firstname" type="text" placeholder="First Name" />
+          </div>
+          <div>
+            <input name="lastname" type="text" placeholder="Last Name" />
+          </div>
+          <div>
+            <input name="phone" type="text" placeholder="Phone" />
+          </div>
+          <div>
+            <input name="email" type="email" placeholder="Email" />
+          </div>
         </form>
       </div>
 
@@ -29,7 +66,9 @@ function Client() {
 
       <div className="bio">
         <form>
-          <textarea name="bio" placeholder="Bio"></textarea>
+          <div>
+            <textarea name="bio" placeholder="Bio"></textarea>
+          </div>
         </form>
       </div>
 
@@ -37,11 +76,21 @@ function Client() {
 
       <div className="address">
         <form>
-          <input name="address" type="text" placeholder="Address" />
-          <input name="city" type="text" placeholder="City" />
-          <input name="state" type="text" placeholder="State" />
-          <input name="zip" type="text" placeholder="Zip" />
-          <input name="country" type="text" placeholder="Country" />
+          <div>
+            <input name="address" type="text" placeholder="Address" />
+          </div>
+          <div>
+            <input name="city" type="text" placeholder="City" />
+          </div>
+          <div>
+            <input name="state" type="text" placeholder="State" />
+          </div>
+          <div>
+            <input name="zip" type="text" placeholder="Zip" />
+          </div>
+          <div>
+            <input name="country" type="text" placeholder="Country" />
+          </div>
         </form>
       </div>
 
@@ -49,13 +98,19 @@ function Client() {
 
       <div className="credentials">
         <form>
-          <input name="username" type="text" placeholder="Username" />
-          <input name="password" type="password" placeholder="Password" />
-          <input
-            name="confirmpassword"
-            type="password"
-            placeholder="Confirm Password"
-          />
+          <div>
+            <input name="username" type="text" placeholder="Username" />
+          </div>
+          <div>
+            <input name="password" type="password" placeholder="Password" />
+          </div>
+          <div>
+            <input
+              name="confirmpassword"
+              type="password"
+              placeholder="Confirm Password"
+            />
+          </div>
         </form>
       </div>
 
