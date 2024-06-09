@@ -1,5 +1,5 @@
 
-  function Profile(){
+  function Prolancer(){
     return (
       <main>
         <h1>Pro-Lancer Profile</h1>
@@ -65,4 +65,4 @@
       )
   }
 
-  export default Profile;
+  export default Prolancer;
