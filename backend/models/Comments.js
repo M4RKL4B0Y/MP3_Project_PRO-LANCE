@@ -1,6 +1,4 @@
-'use strict'
-// Import the DataTypes object from 'sequelize' package.
-// DataTypes will be used to define the data types for model attributes.
+
 const {
     DataTypes
 } = require('sequelize');

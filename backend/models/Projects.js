@@ -1,4 +1,3 @@
-'use strict';
 
 const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
@@ -23,6 +22,15 @@ module.exports = (sequelize) => {
             type: DataTypes.DECIMAL(10,2),
             allowNull: false
           },
+          status_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            reference: {
+              model: 'Status',
+              key: 'id'
+            
+          }
+        },
             client_id: {
             type: DataTypes.INTEGER,
             allowNull: false
