@@ -1,6 +1,6 @@
 'use strict'
 
-const { Sequelize } = require('sequelize');
+const { DataTypes } = require('sequelize');
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
@@ -9,23 +9,33 @@ module.exports = {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
-                type: Sequelize.STRING
+                type: DataTypes.INTEGER
             },
             name: {
-                type: Sequelize.STRING,
+                type: DataTypes.STRING,
                 allowNull: false
             },
             email: {
-                type: Sequelize.STRING,
+                type: DataTypes.STRING,
                 allowNull: false
             },
             password: {
-                type: Sequelize.STRING,
+                type: DataTypes.STRING,
                 allowNull: false
             },
             role: {
-                type: Sequelize.ENUM('client', 'freelancer', 'admin'),
+                type: DataTypes.ENUM('client', 'freelancer', 'admin'),
                 allowNull: false
+            },
+            createdAt: {
+                allowNull: false,
+                type: DataTypes.DATE,
+                defaultValue: Sequelize.fn('NOW')
+            },
+            updatedAt: {
+                allowNull: false,
+                type: DataTypes.DATE,
+                defaultValue: Sequelize.fn('NOW')
             }
         });
     },

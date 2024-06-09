@@ -6,14 +6,17 @@ module.exports = (sequelize) => {
     const Invoice = sequelize.define('Invoice', {
         client_id: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references: {
+              model: 'Users', 
+              key: 'id' 
           },
           
           freelancer_id: {
             type: DataTypes.INTEGER,
             allowNull: true,
             references: {
-              model: 'User', 
+              model: 'Users', 
               key: 'id' 
             }
           },
@@ -34,9 +37,8 @@ module.exports = (sequelize) => {
         total: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false
+          }
         }
-    
-    
 }, {});
 
 Invoice.associate = function(model) {

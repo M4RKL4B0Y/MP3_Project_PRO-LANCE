@@ -23,13 +23,13 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         hooks: { // hooks used for encryption
             beforeCreate: async (user) => {
-                const salt = await bcrypt.genSaltSync();
-                user.password = await bcrypt.hashSync(user.password, salt); //use 'await' for 'bcryot.genSalt' and 'bcrypt.hash' to ensure completion before moving forward 
+                const salt = await bcrypt.genSalt(10);
+                user.password = await bcrypt.hash(user.password, salt); //use 'await' for 'bcryot.genSalt' and 'bcrypt.hash' to ensure completion before moving forward 
             },
             beforeUpdate: async (user) => {
                 if (user.changed('password')) {
-                const salt = await bcrypt.genSaltSync();
-                user.password = await bcrypt.hashSync(user.password, salt);
+                const salt = await bcrypt.genSalt(10);
+                user.password = await bcrypt.hash(user.password, salt);
             }
         }
     }

@@ -8,12 +8,17 @@ module.exports = {
                         id: {
                             allowNull: false,
                             autoIncrement: true,
-                            type: DataTypes.STRING
+                            primaryKey: true,
+                            type: DataTypes.INTEGER
 
                         },
                         freelancer_id: {
                             type: DataTypes.INTEGER,
-                            allowNull: false
+                            allowNull: false,
+                            references: {
+                                model: 'Users',
+                                key: 'id'
+                            }
                         },
                         name: {
                             type: DataTypes.STRING,

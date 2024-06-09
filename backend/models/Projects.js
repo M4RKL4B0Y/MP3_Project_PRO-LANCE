@@ -33,7 +33,11 @@ module.exports = (sequelize) => {
         },
             client_id: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references: {
+              model: 'Users', 
+              key: 'id' 
+            }
           },
           estimate_id: {
             type: DataTypes.INTEGER,
@@ -43,17 +47,18 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: true,
             references: {
-              model: 'User', 
+              model: 'Users', 
               key: 'id' 
             }
           }
 }, {});
 //associations
 Project.associate = function(models) { 
-    Project.belongsTo(models.User, {foreignKey: 'client_id', as: 'client'});
-    Project.belongsTo(models.User, {foreignKey: 'freelancer_id', as: 'freelancer'});  
+    Project.belongsTo(models.Users, {foreignKey: 'client_id', as: 'client'});
+    Project.belongsTo(models.Users, {foreignKey: 'freelancer_id', as: 'freelancer'});  
     Project.hasMany(models.Estimate, {foreignKey: 'project_id', as: 'estimates'});
     Project.hasMany(models.Invoice, { foreignKey: 'project_id', as: 'invoices'});
+    Project.belongsTo(models.Status, { foreignKey: 'status_id', as: 'statuses'});
 
            
 

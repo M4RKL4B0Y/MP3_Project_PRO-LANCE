@@ -10,9 +10,9 @@ module.exports = (sequelize) => {
     });
 
     Status.associate = function(models) {
-        Status.hasMany(models.Project, { foreinKey: 'status_id', as: 'projects'});
+        Status.hasMany(models.Project, { foreignKey: 'status_id', as: 'projects'});
 
     };
 
-    return Role;
+    return Status;
 }

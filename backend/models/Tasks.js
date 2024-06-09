@@ -34,15 +34,15 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: true,
             references: {
-              model: 'User', // name of the table
+              model: 'Users', // name of the table
               key: 'id' // name of the column
             }
           }
 }, {});
 //associations
 Task.associate = function(models) { 
-    Task.belongsTo(models.User, { foreignKey: 'client_id', as: 'client'});
-    Task.belongsTo(models.User, { foreignKey: 'freelancer_id', as: 'freelancer'});  
+    Task.belongsTo(models.Users, { foreignKey: 'client_id', as: 'client'});
+    Task.belongsTo(models.Users, { foreignKey: 'freelancer_id', as: 'freelancer'});  
     Task.hasMany(models.Estimate, { foreignKey: 'task_id', as: 'estimates'});
     Task.hasMany(models.Invoice, {  foreignKey: 'task_id', as: 'invoices'});
            

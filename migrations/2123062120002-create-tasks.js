@@ -1,6 +1,6 @@
 'use strict'
 
-const { Sequelize } = require('sequelize');
+const { DataTypes } = require('sequelize');
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
@@ -9,25 +9,25 @@ module.exports = {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
-                type: Sequelize.INTEGER
+                type: DataTypes.INTEGER
             },
             title: {
-                type: Sequelize.TEXT,
+                type: DataTypes.TEXT,
                 allowNull:false,
             },
             description: {
-                type: Sequelize.TEXT
+                type: DataTypes.TEXT
             },
             startDate: {
-                type: Sequelize.DATE,
+                type: DataTypes.DATE,
                 allowNull: false
             },
             endDate: {
-                type: Sequelize.DATE,
+                type: DataTypes.DATE,
                 allowNull: false
             },
              status_id: {
-                type: Sequelize.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 references: {
                     model: 'Statuses',
@@ -35,7 +35,7 @@ module.exports = {
                 }
                 },
                 client_id: {
-                    type: Sequelize.INTEGER,
+                    type: DataTypes.INTEGER,
                     allowNull: false,
                     references: {
                         model: 'Users',
@@ -43,7 +43,7 @@ module.exports = {
                     }
                 },
                 freelancer_id: {
-                    type: Sequelize.INTEGER,
+                    type: DataTypes.INTEGER,
                     allowNull: false,
                     references: {
                         model: 'Users',
@@ -52,12 +52,12 @@ module.exports = {
                     },
                     createdAt: {
                         allowNull: false,
-                        type: Sequelize.DATE,
+                        type: DataTypes.DATE,
                         defaultValue: Sequelize.NOW
                     },
                     updatedAt: {
                         allowNull: false,
-                        type: Sequelize.DATE,
+                        type: DataTypes.DATE,
                         defaultValue: Sequelize.NOW
                 }
                 });

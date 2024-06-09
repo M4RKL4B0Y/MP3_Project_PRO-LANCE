@@ -3,7 +3,7 @@
 const { DataTypes } = require('sequelize');
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Invoice', {
+    await queryInterface.createTable('Invoices', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,14 +13,18 @@ module.exports = {
       },
       client_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
       },
       
       freelancer_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-          model: 'User', 
+          model: 'Users', 
           key: 'id' 
         }
       },
