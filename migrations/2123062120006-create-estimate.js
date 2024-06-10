@@ -24,21 +24,21 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-          model: 'User', 
+          model: 'Users', 
           key: 'id' 
         }
       },
       project_id: {  
         type: DataTypes.INTEGER,
         references: {  
-         model: 'Project',
+         model: 'Projects',
          key: 'id'
         }
     },
     task_id: {  
         type: DataTypes.INTEGER,
          references: {  
-            model: 'Task',
+            model: 'Tasks',
             key: 'id'
         }
     },

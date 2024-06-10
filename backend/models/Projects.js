@@ -58,7 +58,7 @@ Project.associate = function(models) {
     Project.belongsTo(models.Users, {foreignKey: 'freelancer_id', as: 'freelancer'});  
     Project.hasMany(models.Estimate, {foreignKey: 'project_id', as: 'estimates'});
     Project.hasMany(models.Invoice, { foreignKey: 'project_id', as: 'invoices'});
-    Project.belongsTo(models.Status, { foreignKey: 'status_id', as: 'statuses'});
+    Project.belongsTo(models.Status, { foreignKey: 'status_id', as: 'status'});
 
            
 

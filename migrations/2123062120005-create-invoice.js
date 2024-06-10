@@ -31,14 +31,14 @@ module.exports = {
       project_id: {  
         type: DataTypes.INTEGER,
         references: {  
-         model: 'Project',
+         model: 'Projects',
          key: 'id'
         }
     },
     task_id: {  
         type: DataTypes.INTEGER,
          references: {  
-            model: 'Task',
+            model: 'Tasks',
             key: 'id'
         }
     },

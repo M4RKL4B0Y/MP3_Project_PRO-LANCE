@@ -7,11 +7,37 @@ module.exports = {
       id: {
         allowNull: false,
         autoIncrement: true,
-        type: DataTypes.STRING
+        primaryKey: true,
+        type: DataTypes.INTEGER
       },
       comment: {
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
+        allowNull: true
+      
     },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Users',
+        key: 'id'
+      }
+      },
+      project_id: {
+        allowNull: true,
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Projects',
+          key: 'id'
+        }
+        },
+        task_id: {
+          type: DataTypes.INTEGER,
+           references: {
+            model: 'Tasks',
+            key: 'id'
+           }
+          },
       
     createdAt: {
       allowNull: false,
