@@ -1,37 +1,42 @@
+'use strict';
+
 const { DataTypes } = require('sequelize');
 
-module.exports = (sequelize) => {
-    const Profile  = sequelize.define('Profile', {
+module.exports = (sequelize, DataTypes) => {
+    const Profile = sequelize.define('Profile', {
         title: { 
             type: DataTypes.STRING,
             allowNull: false
-          },
-          freelancer_id: {
-            type: DataTypes.STRING,
-            allowNull: false
-          },
-          Trade_offering: {
-            type: DataTypes.STRING,
-            allowNull: false
-          },
-  
-          Skills: {
-            type: DataTypes.STRING,
-            allowNull: false
-          },
-          Experience: {
-            type: DataTypes.STRING,
-            allowNull: false
-          },
-          Location: {
-            type: DataTypes.STRING,
-            allowNull: false
-          },
-          Languages: {
+        },
+        freelancer_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Users',
+                key: 'id'
+            }
+        },
+        trade_offering: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        Contact: {
+        skills: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        experience: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        location: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        languages: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        contact: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -39,13 +44,12 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         }
-
     }, {});
-    
-  Profile.associate = function(models) {
-        Profile.hasMany(models.Projects, {foreignKey: 'user_id', as: 'projects'});
-    }
+
+    Profile.associate = function(models) {
+        Profile.belongsTo(models.User, { foreignKey: 'freelancer_id', as: 'freelancer' });
+        Profile.hasMany(models.Project, { foreignKey: 'profile_id', as: 'projects' });
+    };
 
     return Profile;
-
 };

@@ -1,18 +1,16 @@
+const { DataTypes } = require('sequelize');
 
-const {
-    DataTypes
-} = require('sequelize');
-
-module.exports = (sequelize) => {
-    const additional_comment = sequelize.define('Comment', {
+module.exports = (sequelize, DataTypes) => {
+    const Comment = sequelize.define('Comment', {
         comment: {
-            type: DataTypes.TEXT
+            type: DataTypes.TEXT,
+            allowNull: false
         },
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            refernces: {
-                model: 'Project',
+            references: {
+                model: 'Users',
                 key: 'id'
             }
         },
@@ -20,31 +18,32 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Project',
+                model: 'Projects',
                 key: 'id'
-            },
-            createdAt: {
-                allowNull: false,
-                type: DataTypes.DATE,
-                defaultValue: Sequelize.fn('NOW')
-              },
-              updatedAt: {
-                allowNull: false,
-                type: DataTypes.DATE,
-                defaultValue: Sequelize.fn('NOW')
-              }
+            }
+        },
+        createdAt: {
+            allowNull: false,
+            type: DataTypes.DATE,
+            defaultValue: sequelize.fn('NOW')
+        },
+        updatedAt: {
+            allowNull: false,
+            type: DataTypes.DATE,
+            defaultValue: sequelize.fn('NOW')
         }
     }, {});
 
-    Comment.assocaite = function(models) {
-        Comment.belongsTo(model.User, {
-            foreignKey: 'user_id'
+    Comment.associate = function(models) {
+        Comment.belongsTo(models.User, {
+            foreignKey: 'user_id',
+            as: 'user'
         });
         Comment.belongsTo(models.Project, {
-            foreignKey: 'project_id'
+            foreignKey: 'project_id',
+            as: 'project'
         });
     };
 
     return Comment;
-
 };

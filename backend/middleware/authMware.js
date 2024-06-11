@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/authConfig');
 const dbase = require('../models');
-const User = dbase.user;
+const User = dbase.User;
 
 const vToken = (req, res, next) => {
     let token = req.headers['pl-access-token']; // 'pl-access-token' is the token naming convention for pro-lance
@@ -12,7 +12,7 @@ const vToken = (req, res, next) => {
         if (err) {
             return res.status(401).send({ message: 'Authentication failed!' });
         }
-        req.user_id = decoded_id;
+        req.user_id = decoded.id;
         next();
     });
 };

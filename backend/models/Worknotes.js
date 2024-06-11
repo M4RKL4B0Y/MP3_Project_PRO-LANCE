@@ -1,18 +1,15 @@
+const { DataTypes } = require('sequelize');
 
-const {
-    DataTypes
-} = require('sequelize');
-
-module.exports = (sequelize) => {
-    const additional_Worknote = sequelize.define('Worknote', {
+module.exports = (sequelize, DataTypes) => {
+    const Worknote = sequelize.define('Worknote', {
         worknote: {
             type: DataTypes.TEXT
         },
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            refernces: {
-                model: 'Project',
+            references: {
+                model: 'Users', 
                 key: 'id'
             }
         },
@@ -22,22 +19,22 @@ module.exports = (sequelize) => {
             references: {
                 model: 'Project',
                 key: 'id'
-            },
-            createdAt: {
-                allowNull: false,
-                type: DataTypes.DATE,
-                defaultValue: Sequelize.fn('NOW')
-              },
-              updatedAt: {
-                allowNull: false,
-                type: DataTypes.DATE,
-                defaultValue: Sequelize.fn('NOW')
-              }
+            }
+        },
+        createdAt: {
+            allowNull: false,
+            type: DataTypes.DATE,
+            defaultValue: sequelize.fn('NOW')
+        },
+        updatedAt: {
+            allowNull: false,
+            type: DataTypes.DATE,
+            defaultValue: sequelize.fn('NOW')
         }
     }, {});
 
-    Worknote.assocaite = function(models) {
-        Worknote.belongsTo(model.User, {
+    Worknote.associate = function(models) {
+        Worknote.belongsTo(models.User, {
             foreignKey: 'user_id'
         });
         Worknote.belongsTo(models.Project, {
@@ -46,5 +43,4 @@ module.exports = (sequelize) => {
     };
 
     return Worknote;
-
 };
