@@ -4,7 +4,7 @@ const cors = require('cors'); /// allows the server to accept requests from diff
 const { Sequelize } = require('sequelize');
 const dbase = require('./models');
 const authRoutes = require('./routes/authRoutes');
-const planceRoutes = require('./routes/planceRoutes');
+const planceRoutes = require('./routes/projRoutes');
 
 
 const app  = express();
@@ -15,9 +15,11 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true}));
 
 const projectRoutes = require('./routes/Projects');
+const taskRoutes = require('./routes/taskRoutes')
 
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/api/tasks', taskRoutes)
 
 
 

@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'id'
             }
         },
+        estimate: {
+            type: DataTypes.FLOAT,
+            allowNull: false
+        },
         createdAt: {
             allowNull: false,
             type: DataTypes.DATE,
