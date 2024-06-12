@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-// import { auth } from "../Config";
-// import { createLogin } from "/auth";
+import { auth } from "../Config";
+import { createLogin } from "/MP3_Project_PRO-LANCE/backend/routes/authRoutes.js";
 
 export default function Prolancer() {
   const [company, setCompany] = useState({});
