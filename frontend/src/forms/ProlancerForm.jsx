@@ -1,37 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
+// import { auth } from "../Config";
+// import { createLogin } from "/auth";
 
-function Prolancer() {
+export default function Prolancer() {
+  const [company, setCompany] = useState({});
+  const [companyinfo, setCompanyInfo] = useState([]);
+  const [contact, setContact] = useState({});
+  const [contactinfo, setContactInfo] = useState([]);
+  const [bio, setBio] = useState({});
+  const [bioinfo, setBioInfo] = useState([]);
+  const Signup = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmpassword, setConfirmpassword] = useState("");
+    const [error, setError] = useState("");
+
+    const handleSignup = async (e) => {
+      e.preventDefault();
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        // Redirect or do something after successful signup
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+  };
+  function handleSubmit(e) {
+    e.preventDefault();
+    setCompanyInfo(
+      [company, ...companyinfo],
+      [contact, ...contactinfo],
+      [bio, ...bioinfo]
+    );
+    console.log(companyinfo);
+  }
   return (
     <main>
-      <h1>Pro-Lancer Profile</h1>
+      <form onSubmit={handleSubmit}>
+        <h1>Pro-Lancer Sign-Up</h1>
 
-      <h2>Company</h2>
+        <h2>Company</h2>
 
-      <div className="company">
-        <form>
+        <div className="company">
           <div>
-            <input name="companyname" type="text" placeholder="Company Name" />
-          </div>
-          <div>
-            <input name="tradename" type="text" placeholder="Trade Name" />
+            <input
+              onChange={(e) => setCompanyInfo(e.target.value)}
+              type="text"
+              placeholder="Company Name"
+            />
           </div>
           <div>
             <input
-              name="recentprojects"
+              onChange={(e) => setCompanyInfo(e.target.value)}
+              type="text"
+              placeholder="Trade Name"
+            />
+          </div>
+          <div>
+            <input
+              onChange={(e) => setCompanyInfo(e.target.value)}
               type="text"
               placeholder="Recent Projects"
             />
           </div>
           <div>
-            <input name="rate" type="text" placeholder="Rate" />
+            <input
+              onChange={(e) => setCompanyInfo(e.target.value)}
+              type="text"
+              placeholder="Rate"
+            />
           </div>
-        </form>
-      </div>
+        </div>
 
-      <h2>Contact</h2>
+        <h2>Contact</h2>
 
-      <div className="contact">
-        <form>
+        <div className="contact">
           <div>
             <input name="firstname" type="text" placeholder="First Name" />
           </div>
@@ -44,10 +87,8 @@ function Prolancer() {
           <div>
             <input name="email" type="email" placeholder="Email" />
           </div>
-        </form>
-      </div>
-      <div className="address">
-        <form>
+        </div>
+        <div className="address">
           <div>
             <input name="address" type="text" placeholder="Address" />
           </div>
@@ -63,59 +104,48 @@ function Prolancer() {
           <div>
             <input name="country" type="text" placeholder="Country" />
           </div>
-        </form>
-      </div>
+        </div>
 
-      <h2>Bio</h2>
+        <h2>Bio</h2>
 
-      <div className="bio">
-        <form>
+        <div className="bio">
           <div>
             <textarea name="bio" placeholder="Bio"></textarea>
           </div>
           <div>
             <textarea name="skills" placeholder="Skills"></textarea>
           </div>
-        </form>
-      </div>
+        </div>
 
-      <h2>Address</h2>
+        <h2>Sign Up</h2>
 
-      <h2>Credentials</h2>
-
-      <div className="credentials">
-        <form>
+        <div className="credentials">
           <div>
-            <input name="username" type="text" placeholder="Username" />
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              placeholder="Email"
+            />
           </div>
           <div>
-            <input name="password" type="password" placeholder="Password" />
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder="Password"
+            />
           </div>
-          <div>
+          {/* <div>
             <input
               name="confirmpassword"
               type="password"
               placeholder="Confirm Password"
             />
-          </div>
-        </form>
-      </div>
-
-      {/* <div className="submit">
-        <button type="submit">Submit</button>
-      </div> */}
+          </div> */}
+        </div>
+        <div className="submit">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
     </main>
   );
 }
-
-export default Prolancer;
-
-// <h2>Scope of Work</h2>
-
-//   <div>
-//   <textarea
-//     name="workscope"
-//     type="textfeild"
-//     placeholder="Scope of Work"
-//   />
-// </div>

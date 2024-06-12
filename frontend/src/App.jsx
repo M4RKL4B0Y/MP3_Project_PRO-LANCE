@@ -1,3 +1,5 @@
+// import React, { useState, useEffect } from "react";
+// import "./App.css";
 import Prolancer from "./forms/ProlancerForm";
 import Client from "./forms/ClientForm";
 import Project from "./forms/ProjectForm";
@@ -7,14 +9,16 @@ import Submit from "./components/Submit";
 // import Button from "./components/Button";
 
 function App() {
+
   return (
     <div className="App">
       <Prolancer />
       {/* <Request />
       <Client />
       <Project />
-      <Invoice /> */}
-      <Submit />
+       */}
+      {/* <Invoice />
+      <Submit /> */}
 
       {/* <Button
            freelancer={freelancer}

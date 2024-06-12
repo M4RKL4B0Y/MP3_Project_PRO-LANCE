@@ -1,4 +1,4 @@
-function Project() {
+export default function Project() {
   return (
     <main>
       <h1>Project Profile</h1>
@@ -57,4 +57,4 @@ function Project() {
   );
 }
 
-export default Project;
+

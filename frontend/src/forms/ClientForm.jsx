@@ -1,4 +1,4 @@
-function Client() {
+export default function Client() {
   return (
     <main>
       <h1>Client Profile</h1>
@@ -121,4 +121,4 @@ function Client() {
   );
 }
 
-export default Client;
+

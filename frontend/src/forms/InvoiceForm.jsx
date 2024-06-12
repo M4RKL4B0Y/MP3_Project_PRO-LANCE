@@ -1,4 +1,4 @@
-function Invoice() {
+export default function Invoice() {
   return (
     <main>
       <h1>Invoice</h1>
@@ -60,6 +60,24 @@ function Invoice() {
         <input name="country" type="text" placeholder="Country" />
       </div>
 
+      <h2>Date</h2>
+
+      <div> 
+        <input name="date" type="text" placeholder="Date" />
+      </div>
+
+      <h2>Project</h2>
+
+      <div>
+        <input name="project" type="text" placeholder="Project" />
+      </div>
+
+      <div>
+        <input name="invoicenumber" type="text" placeholder="Invoice Number" />
+      </div>
+
+      
+
       <h2>Work Description</h2>
 
       <div>
@@ -68,6 +86,24 @@ function Invoice() {
           type="textfeild"
           placeholder="Work Description"
         />
+      </div>
+
+      <h2>Hours Worked</h2>
+
+      <div>
+        <input name="hoursworked" type="text" placeholder="Hours Worked" />
+      </div>
+
+      <h2>Itemized Cost</h2>
+
+      <div>
+        <input name="itemizedcost" type="text" placeholder="Itemized Cost" />
+      </div>
+
+      <h2>Total Cost</h2>
+
+      <div>
+        <input name="totalcost" type="text" placeholder="Total Cost" />
       </div>
 
       <h2>Payment</h2>
@@ -79,4 +115,4 @@ function Invoice() {
   );
 }
 
-export default Invoice;
+
