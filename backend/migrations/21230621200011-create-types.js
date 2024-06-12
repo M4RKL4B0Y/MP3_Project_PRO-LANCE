@@ -10,7 +10,7 @@ module.exports = {
                 primaryKey: true,
                 type: DataTypes.INTEGER
             },
-            name: {
+            type_id: {
                 type: DataTypes.STRING,
                 allowNull: false,
                 unique: true

@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Types',
+                model: 'TaskType',
                 key: 'id'
             }
         }
@@ -67,7 +67,7 @@ module.exports = (sequelize, DataTypes) => {
         Project.hasMany(models.Estimate, { foreignKey: 'project_id', as: 'estimates' });
         Project.hasMany(models.Invoice, { foreignKey: 'project_id', as: 'invoices' });
         Project.belongsTo(models.Status, { foreignKey: 'status_id', as: 'status' });
-        Project.belongsTo(models.Types, { foreignKey: 'type_id:', as: 'type' });
+        Project.belongsTo(models.TaskType, { foreignKey: 'type_id:', as: 'type' });
     };
 
     return Project;

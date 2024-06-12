@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Types',
+                model: 'TaskType',
                 key: 'id'
             }
         }
@@ -57,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
     Task.associate = function(models) { 
         Task.belongsTo(models.User, { foreignKey: 'client_id', as: 'client' });
         Task.belongsTo(models.User, { foreignKey: 'freelancer_id', as: 'freelancer' });  
-        Task.belongsTo(models.Types, { foreignKey: 'type_id', as: 'type' });
+        Task.hasMany(models.TaskType, { foreignKey: 'type_id', as: 'type' });
         Task.hasMany(models.Estimate, { foreignKey: 'task_id', as: 'estimates' });
         Task.hasMany(models.Invoice, { foreignKey: 'task_id', as: 'invoices' });
         

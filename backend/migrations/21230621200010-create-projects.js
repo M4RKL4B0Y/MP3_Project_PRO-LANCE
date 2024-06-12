@@ -18,6 +18,18 @@ module.exports = {
             description: {
                 type: DataTypes.TEXT
             },
+            estimate: {
+                type: DataTypes.DECIMAL(10, 2),
+                allowNull: false
+              },
+              estimate_id: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                references: {
+                  model: 'Estimates',
+                  key: 'id'
+                }
+              },
             startDate: {
                 type: DataTypes.DATE,
                 allowNull: false
