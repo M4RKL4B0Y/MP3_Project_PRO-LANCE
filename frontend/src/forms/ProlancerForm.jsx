@@ -1,39 +1,111 @@
 import React, { useState } from "react";
-// import { auth } from "../Config";
-// import { createLogin } from "/auth";
+//  import {  } from '../config/authConfig';
+import {  } from '../controllers/authController';
 
 export default function Prolancer() {
-  const [company, setCompany] = useState({});
-  const [companyinfo, setCompanyInfo] = useState([]);
-  const [contact, setContact] = useState({});
-  const [contactinfo, setContactInfo] = useState([]);
-  const [bio, setBio] = useState({});
-  const [bioinfo, setBioInfo] = useState([]);
-  const Signup = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmpassword, setConfirmpassword] = useState("");
-    const [error, setError] = useState("");
+  const [company, setCompany] = useState({
+    companyName: "",
+    trade: "",
+    recentProjects: "",
+    rates: "",
+  });
+  
+  const [contact, setContact] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+    state: "",
+    zip: "",
+    country: "",
+  });
+  
+  const [bio, setBio] = useState({
+    bio: "",
+    specialty: "",
+  });
 
-    const handleSignup = async (e) => {
-      e.preventDefault();
-      try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        // Redirect or do something after successful signup
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-  };
-  function handleSubmit(e) {
+  const [signupInfo, setSignupInfo] = useState({
+    email: "",
+    password: "",
+    confirmpassword: "",
+  });
+  const [error, setError] = useState("");
+
+  const handleSignup = (e) => {
     e.preventDefault();
-    setCompanyInfo(
-      [company, ...companyinfo],
-      [contact, ...contactinfo],
-      [bio, ...bioinfo]
-    );
-    console.log(companyinfo);
-  }
+    setSignupInfo({
+  //     if (_signupInfo.password !== signupInfo.confirmpassword) {
+  //       setError("Passwords do not match");
+  //       return;
+  //     }
+  //     try {
+  //       await auth.(signupInfo.email, signupInfo.password);
+  //       // Handle successful signup
+  //     } catch (error) {
+  //       setError(error.message);
+  //     }
+  //   };
+      email: "",
+      password: "",
+      confirmpassword: "",
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setCompany({});
+    setContact({});
+    setBio({});
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setSignupInfo({ ...signupInfo, [name]: value });
+  };
+  
+  // const Signup = () => {
+  //   const [email, setEmail] = useState("");
+  //   const [password, setPassword] = useState("");
+  //   const [confirmpassword, setConfirmpassword] = useState("");
+  //   const [error, setError] = useState("");
+
+  //   function handleSignup (e)  {
+  //     e.preventDefault();
+  //     setEmail("");
+  //     e.preventDefault();
+  //     setPassword("");
+  //     e.preventDefault();
+  //     if (password === confirmpassword) {
+  //       auth
+  //         .createUserWithEmailAndPassword(email, password)  
+  //         .then((userCredential) => {
+  //           // Signed in
+  //           var user = userCredential.user;
+  //           // ...
+  //         })
+  //         .catch((error) => {
+  //           var errorCode = error.code;
+  //           var errorMessage = error.message;
+  //           // ..
+  //         });
+
+  //   }
+      
+      
+  //   };
+  // };
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   setCompanyInfo(
+  //     [company, ...companyinfo],
+  //     [contact, ...contactinfo],
+  //     [bio, ...bioinfo]
+  //   );
+  //   console.log(companyinfo);
+  
   return (
     <main>
       <form onSubmit={handleSubmit}>
@@ -44,28 +116,28 @@ export default function Prolancer() {
         <div className="company">
           <div>
             <input
-              onChange={(e) => setCompanyInfo(e.target.value)}
+              onChange={(e) => handleChange(e, setCompany)}
               type="text"
               placeholder="Company Name"
             />
           </div>
           <div>
             <input
-              onChange={(e) => setCompanyInfo(e.target.value)}
+              onChange={(e) => handleChange(e, setCompany)}
               type="text"
-              placeholder="Trade Name"
+              placeholder="Trade"
             />
           </div>
           <div>
             <input
-              onChange={(e) => setCompanyInfo(e.target.value)}
+              onChange={(e) => handleChange(e, setCompany)}
               type="text"
               placeholder="Recent Projects"
             />
           </div>
           <div>
             <input
-              onChange={(e) => setCompanyInfo(e.target.value)}
+              onChange={(e) => handleChange(e, setCompany)}
               type="text"
               placeholder="Rate"
             />
@@ -76,33 +148,60 @@ export default function Prolancer() {
 
         <div className="contact">
           <div>
-            <input name="firstname" type="text" placeholder="First Name" />
+            <input onChange={(e) => handleChange(e, setContact)} 
+            type="text" 
+            placeholder="First Name" 
+            />
           </div>
           <div>
-            <input name="lastname" type="text" placeholder="Last Name" />
+            <input 
+            onChange={(e) => handleChange(e, setContact)} 
+            type="text" 
+            placeholder="Last Name" />
           </div>
           <div>
-            <input name="phone" type="text" placeholder="Phone" />
+            <input 
+            onChange={(e) => handleChange(e, setContact)} 
+            type="text" 
+            placeholder="Phone" />
           </div>
           <div>
-            <input name="email" type="email" placeholder="Email" />
+            <input 
+            onChange={(e) => handleChange(e, setContact)} 
+            type="email" 
+            placeholder="Email" />
           </div>
         </div>
         <div className="address">
           <div>
-            <input name="address" type="text" placeholder="Address" />
+            <input 
+            onChange={(e) => handleChange(e, setContact)} 
+            type="text" 
+            placeholder="Address" />
           </div>
           <div>
-            <input name="city" type="text" placeholder="City" />
+            <input 
+            onChange={(e) => handleChange(e, setContact)} 
+            type="text" 
+            placeholder="City" />
           </div>
           <div>
-            <input name="state" type="text" placeholder="State" />
+            <input 
+            onChange={(e) => handleChange(e, setContact)} 
+            type="text" 
+            placeholder="State" />
           </div>
           <div>
-            <input name="zip" type="text" placeholder="Zip" />
+            <input 
+            onChange={(e) => handleChange(e, setContact)} 
+            type="text" 
+            placeholder="Zip" />
           </div>
           <div>
-            <input name="country" type="text" placeholder="Country" />
+            <input 
+            onChange={(e) => handleChange(e, setContact)} 
+            type="text" 
+            placeholder="Country" />
           </div>
         </div>
 
@@ -110,38 +209,47 @@ export default function Prolancer() {
 
         <div className="bio">
           <div>
-            <textarea name="bio" placeholder="Bio"></textarea>
+            <textarea 
+            onChange={(e) => handleChange(e, setBio)} 
+            placeholder="Bio"></textarea>
           </div>
           <div>
-            <textarea name="skills" placeholder="Skills"></textarea>
+            <textarea 
+            onChange={(e) => handleChange(e, setBio)} 
+            placeholder="Specialities"></textarea>
           </div>
         </div>
 
         <h2>Sign Up</h2>
 
-        <div className="credentials">
-          <div>
+        <div className="signup">
+        
+          <div on={handleSignUp}>
             <input
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => handleChange(e, setSignupInfo)}
               type="email"
               placeholder="Email"
             />
           </div>
           <div>
             <input
-              onChange={(e) => setPassword(e.target.value)}
+             onChange={(e) => handleChange(e, setSignupInfo)}
               type="password"
               placeholder="Password"
             />
+           
           </div>
-          {/* <div>
+          <div>
             <input
-              name="confirmpassword"
+              onChange={(e) => handleChange(e, setSignupInfo)}
               type="password"
               placeholder="Confirm Password"
             />
-          </div> */}
-        </div>
+          </div>
+          <button onclick={handleSignup}>Sign Up</button>
+          {error && <p>{error}</p>}
+        </div> 
+      
         <div className="submit">
           <button type="submit">Submit</button>
         </div>
