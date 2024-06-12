@@ -63,7 +63,7 @@ exports.deleteProject = async (req, res) => {
         if (!deleted) {
             return res.status(404).json({ error: 'Project not found' });
         }
-        res.status(204).json();
+        res.status(204).end();
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

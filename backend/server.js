@@ -1,38 +1,32 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors'); /// allows the server to accept requests from different origins than its own.
+const cors = require('cors');
 const { Sequelize } = require('sequelize');
-const dbase = require('./models');
+const config = require('./config/config.json')[process.env.NODE_ENV || 'development'];
 const authRoutes = require('./routes/authRoutes');
-const planceRoutes = require('./routes/projRoutes');
+const projRoutes = require('./routes/projRoutes');
+const taskRoutes = require('./routes/taskRoutes');
 
-
-const app  = express();
+const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(cors()); 
-app.use(express.urlencoded({ extended: true}));
-
-const projectRoutes = require('./routes/Projects');
-const taskRoutes = require('./routes/taskRoutes')
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/auth', authRoutes);
-app.use('/api/projects', projectRoutes);
-app.use('/api/tasks', taskRoutes)
+app.use('/api/projects', projRoutes);
+app.use('/api/tasks', taskRoutes);
 
-
-
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-    host: process.env.DB_HOST,
-    dialect: process.env.DB_DIALECT
+const sequelize = new Sequelize(config.database, config.username, config.password, {
+    host: config.host,
+    dialect: config.dialect,
+    port: config.port,
 });
 
-
-sequelize
-    .authenticate()
+sequelize.authenticate()
     .then(() => {
-        console.log('Connected successfully.');
+        console.log('Connection has been established successfully.');
     })
     .catch(err => {
         console.error('Unable to connect to the database:', err);
@@ -41,3 +35,5 @@ sequelize
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+module.exports = sequelize;

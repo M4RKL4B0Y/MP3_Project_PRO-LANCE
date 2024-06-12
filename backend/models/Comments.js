@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize) => {
     const Comment = sequelize.define('Comment', {
         comment: {
             type: DataTypes.TEXT,
@@ -36,12 +36,10 @@ module.exports = (sequelize, DataTypes) => {
 
     Comment.associate = function(models) {
         Comment.belongsTo(models.User, {
-            foreignKey: 'user_id',
-            as: 'user'
+            foreignKey: 'user_id'
         });
         Comment.belongsTo(models.Project, {
-            foreignKey: 'project_id',
-            as: 'project'
+            foreignKey: 'project_id'
         });
     };
 

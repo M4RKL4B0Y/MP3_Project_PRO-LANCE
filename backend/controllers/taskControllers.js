@@ -3,12 +3,13 @@ const { Task, Estimate, User } = require('../models');
 
 exports.createTask = async (req, res) => {
     try {
-        const task = await Task.create({ ...req.body, project_id: req.params.project_id });
+        const task = await Task.create({ ...req.body, project_id: req.params.projectId });
         res.status(201).json(task);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 };
+
 
 exports.getTaskById = async (req, res) => {
     try {
@@ -23,6 +24,23 @@ exports.getTaskById = async (req, res) => {
             return res.status(404).json({ error: 'Task not found' });
         }
         res.status(200).json(task);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+
+exports.getTasksByProjectId = async (req, res) => {
+    try {
+        const tasks = await Task.findAll({
+            where: { project_id: req.params.projectId },
+            include: [
+                { model: Estimate, as: 'estimates' },
+                { model: User, as: 'client', attributes: ['name', 'email'] },
+                { model: User, as: 'freelancer', attributes: ['name', 'email'] }
+            ]
+        });
+        res.status(200).json(tasks);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -59,23 +77,6 @@ exports.deleteTask = async (req, res) => {
             return res.status(404).json({ error: 'Task not found' });
         }
         res.status(204).json();
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-};
-
-
-exports.getTasksByProjectId = async (req, res) => {
-    try {
-        const tasks = await Task.findAll({
-            where: { project_id: req.params.projectId },
-            include: [
-                { model: Estimate, as: 'estimates' },
-                { model: User, as: 'client', attributes: ['name', 'email'] },
-                { model: User, as: 'freelancer', attributes: ['name', 'email'] }
-            ]
-        });
-        res.status(200).json(tasks);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
