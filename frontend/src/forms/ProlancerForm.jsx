@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-//  import {  } from '../config/authConfig';
-import {  } from '../controllers/authController';
+// require('dotenv').config();
+// const dbase = require('../models');
+// const jwt = require('jsonwebtoken');
+// const bcrypt = require('bcryptjs');
+// const confq = require('../config/authConfig');
+//  const Prolancer = dbase.user;
 
 export default function Prolancer() {
   const [company, setCompany] = useState({
@@ -9,7 +13,7 @@ export default function Prolancer() {
     recentProjects: "",
     rates: "",
   });
-  
+ 
   const [contact, setContact] = useState({
     firstName: "",
     lastName: "",
@@ -31,6 +35,7 @@ export default function Prolancer() {
     email: "",
     password: "",
     confirmpassword: "",
+   
   });
   const [error, setError] = useState("");
 
@@ -51,6 +56,7 @@ export default function Prolancer() {
       email: "",
       password: "",
       confirmpassword: "",
+    
     });
   };
 
@@ -108,6 +114,7 @@ export default function Prolancer() {
   
   return (
     <main>
+        {console.log("Rendering component with state:", { company, contact, bio, signupInfo })}
       <form onSubmit={handleSubmit}>
         <h1>Pro-Lancer Sign-Up</h1>
 
@@ -224,7 +231,7 @@ export default function Prolancer() {
 
         <div className="signup">
         
-          <div on={handleSignUp}>
+          <div on={handleSignup}>
             <input
               onChange={(e) => handleChange(e, setSignupInfo)}
               type="email"
@@ -246,13 +253,13 @@ export default function Prolancer() {
               placeholder="Confirm Password"
             />
           </div>
-          <button onclick={handleSignup}>Sign Up</button>
+          <button onClick={handleSignup}>Sign Up</button>
           {error && <p>{error}</p>}
         </div> 
       
-        <div className="submit">
+        {/* <div className="submit">
           <button type="submit">Submit</button>
-        </div>
+        </div> */}
       </form>
     </main>
   );
