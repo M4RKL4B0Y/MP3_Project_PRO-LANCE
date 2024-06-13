@@ -57,6 +57,14 @@ module.exports = (sequelize, DataTypes) => {
                 model: 'TaskType',
                 key: 'id'
             }
+        },
+        profile_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Profiles',
+                key: 'id'
+            } 
         }
     }, {});
 

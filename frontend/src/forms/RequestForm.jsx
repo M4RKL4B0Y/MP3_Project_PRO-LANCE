@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import api from "../baseURL";
 
 const RequestForm = () => {
   const [types, setTypes] = useState([]);
   const [selectedType, setSelectedType] = useState(''); 
   const [description, setDescription] = useState('');
+  const [title, SetTitle] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [estimate, setEstimate] = useState('');
+  const [status_id, setStatusID] = useState('');
+  const [client_id, setClientID] = useState('');
+  const [estimate_id, setEstimateID] = useState('');
+  const [type_id, setTypeID] = useState('');
 
   useEffect(() => {
     const fetchTypes = async () => {
@@ -18,31 +27,80 @@ const RequestForm = () => {
     fetchTypes();
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const selectedTypeObject = types.find(type => type.id === parseInt(selectedType));
-
-    if (selectedTypeObject) {
-      if (selectedTypeObject.category === 'project') {
-        window.location.href = `/project-form?description=${description}&typeID=${selectedType}`;
-      } else {
-        window.location.href = `/task-form?description=${description}&typeID=${selectedType}`;
-      }
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+     const response  = await api.post('/projects', {
+        title,
+        description,
+        startDate,
+        endDate,
+        client_id,
+        estimate_id,
+        type_id
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error.response ? error.response.data : 'An error occurred');
     }
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <input 
+          type="text" 
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Title"
+          required 
+        />
         <textarea 
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Describe your project or task"
           required 
         />
+        <input 
+          type="date" 
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          placeholder="Start Date"
+          required 
+        />
+        <input 
+          type="date" 
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+          placeholder="End Date"
+          required 
+        />
+        <input 
+          type="number" 
+          value={estimate}
+          onChange={(e) => setEstimate(e.target.value)}
+          placeholder="Estimate"
+          required 
+        />
+
+        <input 
+          type="number" 
+          value={client_id}
+          onChange={(e) => setClientId(e.target.value)}
+          placeholder="Client ID"
+          required 
+        />
+        <input 
+          type="number" 
+          value={estimate_id}
+          onChange={(e) => setEstimateId(e.target.value)}
+          placeholder="Estimate ID"
+
+          required 
+        />
         <select 
-          value={selectedType}
-          onChange={(e) => setSelectedType(e.target.value)}
+          value={type_id}
+          onChange={(e) => setTypeId(e.target.value)}
           required
         >
           <option value="" disabled>Select a request type</option>
