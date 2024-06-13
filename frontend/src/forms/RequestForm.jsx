@@ -1,67 +1,117 @@
-export default function Request() {
-    // const [project, setProject] = useState({});
-    // function handleSubmit(e) {
-    //     e.preventDefault();
-    //     console.log("Form submitted");
-    //     alert("Form submitted");
-    // }
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
+import api from "../baseURL";
+
+const RequestForm = () => {
+  const [types, setTypes] = useState([]);
+  const [selectedType, setSelectedType] = useState(''); 
+  const [description, setDescription] = useState('');
+  const [title, SetTitle] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [estimate, setEstimate] = useState('');
+  const [status_id, setStatusID] = useState('');
+  const [client_id, setClientID] = useState('');
+  const [estimate_id, setEstimateID] = useState('');
+  const [type_id, setTypeID] = useState('');
+
+  useEffect(() => {
+    const fetchTypes = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/types');
+        setTypes(response.data);
+      } catch (error) {
+        console.error("Error fetching types:", error);
+      }
+    };
+    fetchTypes();
+  }, []);
+
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+     const response  = await api.post('/projects', {
+        title,
+        description,
+        startDate,
+        endDate,
+        client_id,
+        estimate_id,
+        type_id
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error.response ? error.response.data : 'An error occurred');
+    }
+  };
+
   return (
-    <main>
-      <form>
-        <h1>Request</h1>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="text" 
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Title"
+          required 
+        />
+        <textarea 
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Describe your project or task"
+          required 
+        />
+        <input 
+          type="date" 
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          placeholder="Start Date"
+          required 
+        />
+        <input 
+          type="date" 
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+          placeholder="End Date"
+          required 
+        />
+        <input 
+          type="number" 
+          value={estimate}
+          onChange={(e) => setEstimate(e.target.value)}
+          placeholder="Estimate"
+          required 
+        />
 
-        <h2>Project Type</h2>
+        <input 
+          type="number" 
+          value={client_id}
+          onChange={(e) => setClientId(e.target.value)}
+          placeholder="Client ID"
+          required 
+        />
+        <input 
+          type="number" 
+          value={estimate_id}
+          onChange={(e) => setEstimateId(e.target.value)}
+          placeholder="Estimate ID"
 
-        <div>
-          <input name="projecttype" type="text" placeholder="Type of Project" />
-        </div>
-
-        <h2>Work Requested</h2>
-
-        <div>
-          <textarea
-            name="workrequested"
-            type="text"
-            placeholder="Work Requested"
-          />
-        </div>
-
-        <h2>Duration</h2>
-
-        <div>
-          <input name="duration" type="text" placeholder="Duration" />
-        </div>
-
-        <h2>Location</h2>
-
-        <div>
-          <input name="location" type="text" placeholder="Location" />
-        </div>
-
-        <h2>Budget</h2>
-
-        <div>
-          <input name="budget" type="text" placeholder="Budget" />
-        </div>
-        
-        <div>
-            <input name="address" type="text" placeholder="Address" />
-          </div>
-          <div>
-            <input name="city" type="text" placeholder="City" />
-          </div>
-          <div>
-            <input name="state" type="text" placeholder="State" />
-          </div>
-          <div>
-            <input name="zip" type="text" placeholder="Zip" />
-          </div>
-          <div>
-            <input name="country" type="text" placeholder="Country" />
-          </div>
-
-        {/* <button onClick {(e)=>handleSubmit(e)} >Submit</button> */}
+          required 
+        />
+        <select 
+          value={type_id}
+          onChange={(e) => setTypeId(e.target.value)}
+          required
+        >
+          <option value="" disabled>Select a request type</option>
+          {types.map(type => (
+            <option key={type.id} value={type.id}>{type.name}</option>
+          ))}
+        </select>
+        <button type="submit">Submit</button>
       </form>
-    </main>
+    </div>
   );
-}
+};
+
+export default RequestForm;

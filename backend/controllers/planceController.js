@@ -3,9 +3,22 @@ const { Project, Estimate } = require('../models');
 
 exports.createProject = async (req, res) => {
     try {
-        const project = await Project.create(req.body);
+        const { title, description, startDate, endDate, estimate, estimate_id, type_id, client_id, freelancer_id, status_id } = req.body;
+        const project = await Project.create({ 
+            title, 
+            description, 
+            startDate, 
+            endDate, 
+            estimate, 
+            estimate_id, 
+            type_id, 
+            client_id, 
+            freelancer_id, 
+            status_id 
+        });
         res.status(201).json(project);
     } catch (err) {
+        console.error(err);
         res.status(500).json({ error: err.message });
     }
 };

@@ -41,15 +41,26 @@ module.exports = (sequelize, DataTypes) => {
                 model: 'Users', 
                 key: 'id' 
             }
+        },
+        type_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'TaskType',
+                key: 'id'
+            }
         }
+
     }, {});
 
     // Associations
     Task.associate = function(models) { 
         Task.belongsTo(models.User, { foreignKey: 'client_id', as: 'client' });
         Task.belongsTo(models.User, { foreignKey: 'freelancer_id', as: 'freelancer' });  
+        Task.hasMany(models.TaskType, { foreignKey: 'type_id', as: 'type' });
         Task.hasMany(models.Estimate, { foreignKey: 'task_id', as: 'estimates' });
         Task.hasMany(models.Invoice, { foreignKey: 'task_id', as: 'invoices' });
+        
     };
 
     return Task;

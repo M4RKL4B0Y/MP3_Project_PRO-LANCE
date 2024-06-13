@@ -49,6 +49,22 @@ module.exports = (sequelize, DataTypes) => {
                 model: 'Users',
                 key: 'id'
             }
+        },
+        type_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'TaskType',
+                key: 'id'
+            }
+        },
+        profile_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Profiles',
+                key: 'id'
+            } 
         }
     }, {});
 
@@ -59,6 +75,7 @@ module.exports = (sequelize, DataTypes) => {
         Project.hasMany(models.Estimate, { foreignKey: 'project_id', as: 'estimates' });
         Project.hasMany(models.Invoice, { foreignKey: 'project_id', as: 'invoices' });
         Project.belongsTo(models.Status, { foreignKey: 'status_id', as: 'status' });
+        Project.belongsTo(models.TaskType, { foreignKey: 'type_id:', as: 'type' });
     };
 
     return Project;
