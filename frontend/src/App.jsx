@@ -1,25 +1,21 @@
-// import React, { useState, useEffect } from "react";
-// import "./App.css";
-// require('dotenv').config()
-// import Prolancer from "./forms/ProlancerForm";
-import Client from "./users/client";
-// import Project from "./forms/ProjectForm";
-// import Request from "./forms/RequestForm";
-// import Invoice from "./forms/InvoiceForm";
-// import Submit from "./components/Submit";
-// import Button from "./components/Button";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import Browse from "./components/Browse/Browse";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Gallery from "./components/Gallery/Gallery";
 
 function App() {
-
   return (
     <div className="App">
-      {/* <Prolancer /> */}
-      <Client />
-      {/* <Request />
-      
+      {/* <Client /> */}
+      <Dashboard />
+      <Browse />
+      <Gallery />
+      {/* <Prolancer /> 
+      <Request />
       <Project />
-       */}
-      {/* <Invoice />
+      <Invoice />
       <Submit /> */}
 
       {/* <Button
