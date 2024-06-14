@@ -46,8 +46,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'TaskType',
+                model: 'Tasks',
                 key: 'id'
+            }
+        },
+        status_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+              model: 'Statuses',
+              key: 'id'
             }
         }
 

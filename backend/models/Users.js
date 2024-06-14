@@ -11,6 +11,24 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             unique: true
         },
+        
+        client_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'Users',
+                key: 'id'
+            }
+        },
+ 
+        freelancer_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'Users',
+                key: 'id'
+            }
+        },
         password: {
             type: DataTypes.STRING,
             allowNull: false

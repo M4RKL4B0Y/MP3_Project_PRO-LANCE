@@ -45,29 +45,3 @@ exports.login = async (req, res) => {
     }
 };
 
-// exports.ProlancerUser = async (req, res) => {
-//     try {
-//         const user = await User.findOne({ where: { email: req.body.email } });
-//         if (!user) {
-//             return res.status(404).send({ message: 'User not found. Check your email or contact support' });
-//         }
-
-//         const pwordValid = bcrypt.compareSync(req.body.password, user.password);
-//         if (!pwordValid) {
-//             return res.status(401).send({ message: 'Incorrect password. Try again or contact support' });
-//         }
-//         // Create a token using the 'sign' method from jsonwebtoken package
-//         const token = jwt.sign({ id: user.id }, confq.secret, { expiresIn: 10000 });
-//         res.status(200).send({
-//             // Omitting the 'id' from the response for security reasons unless needed
-//             username: user.username,
-//             email: user.email,
-//             token: token
-//         });
-//     }
-//     catch (err) {
-//         console.error(err); // Log the error for debugging purposes
-//         res.status(500).send({ message: err.message });
-//     }
-// };
-
