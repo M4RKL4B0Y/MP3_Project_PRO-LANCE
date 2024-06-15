@@ -3,7 +3,7 @@ import api from '../baseURL';
 
 const Register = () => {
     const [formData, setFormData] = useState({
-        username: '',
+        name: '',
         email: '',
         password: '',
         role_id: ''
@@ -27,10 +27,10 @@ const Register = () => {
         <form onSubmit={handleSubmit}>
             <input 
                 type="text" 
-                name="username" 
+                name="name" 
                 value={formData.username} 
                 onChange={handleChange} 
-                placeholder='Username' 
+                placeholder='Name' 
                 required 
             />    
             <input 

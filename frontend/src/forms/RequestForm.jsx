@@ -6,7 +6,7 @@ const RequestForm = () => {
   const [types, setTypes] = useState([]);
   const [selectedType, setSelectedType] = useState(''); 
   const [description, setDescription] = useState('');
-  const [title, SetTitle] = useState('');
+  const [title, setTitle] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [estimate, setEstimate] = useState('');
@@ -14,6 +14,7 @@ const RequestForm = () => {
   const [client_id, setClientID] = useState('');
   const [estimate_id, setEstimateID] = useState('');
   const [type_id, setTypeID] = useState('');
+  const [profile_id, setProfileID] = useState('');
 
   useEffect(() => {
     const fetchTypes = async () => {
@@ -27,17 +28,18 @@ const RequestForm = () => {
     fetchTypes();
   }, []);
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-     const response  = await api.post('/projects', {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await api.post('/projects', {
         title,
         description,
         startDate,
         endDate,
         client_id,
         estimate_id,
-        type_id
+        type_id,
+        profile_id
       });
       console.log(response.data);
     } catch (error) {
@@ -82,25 +84,23 @@ const RequestForm = () => {
           placeholder="Estimate"
           required 
         />
-
         <input 
           type="number" 
           value={client_id}
-          onChange={(e) => setClientId(e.target.value)}
+          onChange={(e) => setClientID(e.target.value)}
           placeholder="Client ID"
           required 
         />
         <input 
           type="number" 
           value={estimate_id}
-          onChange={(e) => setEstimateId(e.target.value)}
+          onChange={(e) => setEstimateID(e.target.value)}
           placeholder="Estimate ID"
-
           required 
         />
         <select 
           value={type_id}
-          onChange={(e) => setTypeId(e.target.value)}
+          onChange={(e) => setTypeID(e.target.value)}
           required
         >
           <option value="" disabled>Select a request type</option>
@@ -108,6 +108,13 @@ const RequestForm = () => {
             <option key={type.id} value={type.id}>{type.name}</option>
           ))}
         </select>
+        <input 
+          type="number" 
+          value={profile_id}
+          onChange={(e) => setProfileID(e.target.value)}
+          placeholder="Profile ID"
+          required 
+        />
         <button type="submit">Submit</button>
       </form>
     </div>
