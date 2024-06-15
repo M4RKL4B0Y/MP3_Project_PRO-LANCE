@@ -18,31 +18,31 @@ module.exports = (sequelize, DataTypes) => {
         },
         trade_offering: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         skills: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         experience: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         location: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         languages: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         contact: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         image: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         }
     }, {});
 

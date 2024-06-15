@@ -1,39 +1,52 @@
-// import React, { useState } from "react";
-// import { auth } from "../";
-// import { signIn } from "/auth";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import api from '../baseURL';
 
-// const Login = () => {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [error, setError] = useState("");
+const Login = () => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    });
 
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await signInWithEmailAndPassword(auth, email, password);
-//       // Redirect or do something after successful login
-//     } catch (err) {
-//       setError(err.message);
-//     }
-//   };
+    const navigate = useNavigate();
 
-//   return (
-//     <div>
-//       <h2>Login</h2>
-//       <form onSubmit={handleLogin}>
-//         <div>
-//           <label>Email:</label>
-//           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-//         </div>
-//         <div>
-//           <label>Password:</label>
-//           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-//         </div>
-//         <button type="submit">Login</button>
-//       </form>
-//       {error && <p>{error}</p>}
-//     </div>
-//   );
-// };
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-// export default Login;
+    const handleSubmit = async (e) => { 
+        e.preventDefault();
+        try {
+            const response = await api.post('/auth/login', formData); 
+            console.log(response.data);
+            localStorage.setItem('token', response.data.token); 
+            navigate('/dashboard'); 
+        } catch (error) {
+            console.error(error.response ? error.response.data : 'An error occurred');
+        }
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input 
+                type='email' 
+                name='email'
+                value={formData.email} 
+                onChange={handleChange} 
+                placeholder="Email" 
+                required 
+            />
+            <input 
+                type='password'
+                name='password' 
+                value={formData.password} 
+                onChange={handleChange} 
+                placeholder='Password'
+                required 
+            />
+            <button type='submit'>Login</button>
+        </form>
+    );
+};
+
+export default Login;

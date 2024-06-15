@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import api from "../baseURL";
+import api from '../baseURL';
 
 const RequestForm = () => {
   const [types, setTypes] = useState([]);
   const [selectedType, setSelectedType] = useState(''); 
   const [description, setDescription] = useState('');
-  const [title, SetTitle] = useState('');
+  const [title, setTitle] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [estimate, setEstimate] = useState('');
@@ -14,6 +14,7 @@ const RequestForm = () => {
   const [client_id, setClientID] = useState('');
   const [estimate_id, setEstimateID] = useState('');
   const [type_id, setTypeID] = useState('');
+  const [profile_id, setProfileID] = useState('');
 
   useEffect(() => {
     const fetchTypes = async () => {
@@ -21,23 +22,24 @@ const RequestForm = () => {
         const response = await axios.get('http://localhost:3000/api/types');
         setTypes(response.data);
       } catch (error) {
-        console.error("Error fetching types:", error);
+        console.error('Error fetching types:', error);
       }
     };
     fetchTypes();
   }, []);
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-     const response  = await api.post('/projects', {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await api.post('/projects', {
         title,
         description,
         startDate,
         endDate,
         client_id,
         estimate_id,
-        type_id
+        type_id,
+        profile_id
       });
       console.log(response.data);
     } catch (error) {
@@ -49,66 +51,71 @@ const RequestForm = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <input 
-          type="text" 
+          type='text' 
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Title"
+          placeholder='Title'
           required 
         />
         <textarea 
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Describe your project or task"
+          placeholder='Describe your project or task'
           required 
         />
         <input 
-          type="date" 
+          type='date' 
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
-          placeholder="Start Date"
+          placeholder='Start Date'
           required 
         />
         <input 
-          type="date" 
+          type='date' 
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
-          placeholder="End Date"
+          placeholder='End Date'
           required 
         />
         <input 
-          type="number" 
+          type='number' 
           value={estimate}
           onChange={(e) => setEstimate(e.target.value)}
-          placeholder="Estimate"
+          placeholder='Estimate'
           required 
         />
-
         <input 
-          type="number" 
+          type='number' 
           value={client_id}
-          onChange={(e) => setClientId(e.target.value)}
-          placeholder="Client ID"
+          onChange={(e) => setClientID(e.target.value)}
+          placeholder='Client ID'
           required 
         />
         <input 
-          type="number" 
+          type='number' 
           value={estimate_id}
-          onChange={(e) => setEstimateId(e.target.value)}
-          placeholder="Estimate ID"
-
+          onChange={(e) => setEstimateID(e.target.value)}
+          placeholder='Estimate ID'
           required 
         />
         <select 
           value={type_id}
-          onChange={(e) => setTypeId(e.target.value)}
+          onChange={(e) => setTypeID(e.target.value)}
           required
         >
-          <option value="" disabled>Select a request type</option>
+          <option value='' disabled>Select a request type</option>
           {types.map(type => (
             <option key={type.id} value={type.id}>{type.name}</option>
           ))}
         </select>
-        <button type="submit">Submit</button>
+        <input 
+          type='number' 
+          value={profile_id}
+          onChange={(e) => setProfileID(e.target.value)}
+          placeholder='Profile ID'
+          required 
+        />
+        <button type='submit'>Submit</button>
       </form>
     </div>
   );
