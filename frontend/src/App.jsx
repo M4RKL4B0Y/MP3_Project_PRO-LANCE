@@ -1,19 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Register from './forms/RegistrationForm';
-import newProfile from './forms/ProfileForm';
+import NewProfile from './forms/ProfileForm';
 import Dashboard from './components/Dashboard';
 
 const App = () => {
     return (
         <Router>
-            <Switch>
-                <Route path='/register' component={Register} />
-                <Route path='/create-profile' component={newProfile} />
-                <Route path='/dashboard' component={Dashboard} />
-            </Switch>
+            <Routes>
+                <Route path='/register' element={<Register />} />
+                <Route path='/create-profile' element={<NewProfile />} />
+                <Route path='/dashboard' element={<Dashboard />} />
+            </Routes>
         </Router>
-    )
-}
+    );
+};
 
-export default App
+export default App;

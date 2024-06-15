@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import api from '../baseURL'; 
 
 const RegisterForm = () => {
@@ -11,7 +11,7 @@ const RegisterForm = () => {
         role_id: 'client'
     });
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,7 +22,7 @@ const RegisterForm = () => {
         try {
             const response = await api.post('/auth/register', formData);
             console.log(response.data);
-            history.push('/login');
+            navigate('/login');
         } catch (error) {
             console.error(error.response ? error.response.data : 'An error occurred');
         }
