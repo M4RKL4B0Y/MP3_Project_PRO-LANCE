@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
         },
         estimate: {
             type: DataTypes.DECIMAL(10, 2),
-            allowNull: false
+            allowNull: true
         },
         client_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
             references: {
                 model: 'Users', 
                 key: 'id' 
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         estimate_id: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         freelancer_id: {
             type: DataTypes.INTEGER,
@@ -46,8 +46,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'TaskType',
+                model: 'Tasks',
                 key: 'id'
+            }
+        },
+        status_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+              model: 'Statuses',
+              key: 'id'
             }
         }
 

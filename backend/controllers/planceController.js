@@ -1,29 +1,16 @@
 const { Project, Estimate } = require('../models');
 
-
+// Create a new project
 exports.createProject = async (req, res) => {
     try {
-        const { title, description, startDate, endDate, estimate, estimate_id, type_id, client_id, freelancer_id, status_id } = req.body;
-        const project = await Project.create({ 
-            title, 
-            description, 
-            startDate, 
-            endDate, 
-            estimate, 
-            estimate_id, 
-            type_id, 
-            client_id, 
-            freelancer_id, 
-            status_id 
-        });
+        const project = await Project.create(req.body);
         res.status(201).json(project);
     } catch (err) {
-        console.error(err);
         res.status(500).json({ error: err.message });
     }
 };
 
-
+// Get all projects
 exports.getProjects = async (req, res) => {
     try {
         const projects = await Project.findAll({
@@ -35,7 +22,7 @@ exports.getProjects = async (req, res) => {
     }
 };
 
-
+// Get project by ID
 exports.getProjectById = async (req, res) => {
     try {
         const project = await Project.findByPk(req.params.id, {
@@ -50,7 +37,7 @@ exports.getProjectById = async (req, res) => {
     }
 };
 
-
+// Update project
 exports.updateProject = async (req, res) => {
     try {
         const [updated] = await Project.update(req.body, {
@@ -68,6 +55,7 @@ exports.updateProject = async (req, res) => {
     }
 };
 
+// Delete project
 exports.deleteProject = async (req, res) => {
     try {
         const deleted = await Project.destroy({

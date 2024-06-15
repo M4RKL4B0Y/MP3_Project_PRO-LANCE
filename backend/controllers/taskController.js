@@ -1,6 +1,6 @@
 const { Task, Estimate, User } = require('../models');
 
-
+// Create a new task
 exports.createTask = async (req, res) => {
     try {
         const task = await Task.create({ ...req.body, project_id: req.params.projectId });
@@ -10,7 +10,7 @@ exports.createTask = async (req, res) => {
     }
 };
 
-
+// Get task by ID
 exports.getTaskById = async (req, res) => {
     try {
         const task = await Task.findByPk(req.params.id, {
@@ -29,7 +29,7 @@ exports.getTaskById = async (req, res) => {
     }
 };
 
-
+// Get tasks by project ID
 exports.getTasksByProjectId = async (req, res) => {
     try {
         const tasks = await Task.findAll({
@@ -46,6 +46,7 @@ exports.getTasksByProjectId = async (req, res) => {
     }
 };
 
+// Update task
 exports.updateTask = async (req, res) => {
     try {
         const [updated] = await Task.update(req.body, {
@@ -67,7 +68,7 @@ exports.updateTask = async (req, res) => {
     }
 };
 
-
+// Delete task
 exports.deleteTask = async (req, res) => {
     try {
         const deleted = await Task.destroy({

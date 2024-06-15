@@ -1,42 +1,21 @@
-// import React, { useState, useEffect } from "react";
-// import "./App.css";
-// require('dotenv').config()
-import Prolancer from "./forms/ProlancerForm";
-import Client from "./forms/ClientForm";
-import Project from "./forms/ProjectForm";
-import Request from "./forms/RequestForm";
-import Invoice from "./forms/InvoiceForm";
-import Submit from "./components/Submit";
-// import Button from "./components/Button";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Register from './forms/RegistrationForm';
+import NewProfile from './forms/ProfileForm';
+import Dashboard from './components/Dashboard';
+import Login from './components/Login';
 
-function App() {
-
-  return (
-    <div className="App">
-      <Prolancer />
-      {/* <Request />
-      <Client />
-      <Project />
-       */}
-      {/* <Invoice />
-      <Submit /> */}
-
-      {/* <Button
-           freelancer={freelancer}
-        /> */}
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <Router>
+            <Routes>
+                <Route path='/register' element={<Register />} />
+                <Route path='/create-profile' element={<NewProfile />} />
+                <Route path='/dashboard/*' element={<Dashboard />} />
+                <Route path='/login' element={<Login />} />
+            </Routes>
+        </Router>
+    );
+};
 
 export default App;
-
-// const freelancer = {
-//   name: "Mark Laboy",
-//   trade: "Low Voltage",
-//   company:"Audio Advice",
-//   specialty:"Smart Home Automation",
-//   bio: "Husband to a beautiful woman and a father of 4. The reasons why I get up, go to work and prosper...(try to). CEDIA and Control 4 Certified, I'm a dude who's a dad that works with devices that hopefully make people's dreams come true. Experienced in A/V, Networking, Surveillance, Lighting and Shades. Currently a student at NC State, studying Software Development.",
-//   email: "mvlk5@example.com",
-//   phone: "123-456-7890",
-//   rate: 500,
-// }
