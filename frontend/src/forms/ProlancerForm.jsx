@@ -72,46 +72,6 @@ export default function Prolancer() {
     setSignupInfo({ ...signupInfo, [name]: value });
   };
   
-  // const Signup = () => {
-  //   const [email, setEmail] = useState("");
-  //   const [password, setPassword] = useState("");
-  //   const [confirmpassword, setConfirmpassword] = useState("");
-  //   const [error, setError] = useState("");
-
-  //   function handleSignup (e)  {
-  //     e.preventDefault();
-  //     setEmail("");
-  //     e.preventDefault();
-  //     setPassword("");
-  //     e.preventDefault();
-  //     if (password === confirmpassword) {
-  //       auth
-  //         .createUserWithEmailAndPassword(email, password)  
-  //         .then((userCredential) => {
-  //           // Signed in
-  //           var user = userCredential.user;
-  //           // ...
-  //         })
-  //         .catch((error) => {
-  //           var errorCode = error.code;
-  //           var errorMessage = error.message;
-  //           // ..
-  //         });
-
-  //   }
-      
-      
-  //   };
-  // };
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   setCompanyInfo(
-  //     [company, ...companyinfo],
-  //     [contact, ...contactinfo],
-  //     [bio, ...bioinfo]
-  //   );
-  //   console.log(companyinfo);
-  
   return (
     <main>
         {console.log("Rendering component with state:", { company, contact, bio, signupInfo })}
