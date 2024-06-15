@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false
       },
+      
       startDate: { 
         type: DataTypes.DATE,
         allowNull: false
@@ -18,11 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       estimate: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false
+        allowNull: true
       },
       status_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: 'Statuses',
           key: 'id'
@@ -30,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       client_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: 'Users',
           key: 'id'
@@ -38,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       estimate_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
       },
       freelancer_id: {
         type: DataTypes.INTEGER,
@@ -58,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       profile_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: 'Profiles',
           key: 'id'

@@ -1,8 +1,38 @@
-export default function Dashboard() {
-    
+import React from 'react';
+import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
+import Projects from './Projects';
+import Tasks from './Tasks';
+import Messages from './Messages';
+
+const Dashboard = () => {
+    let { path, url } = useRouteMatch();
+
     return (
-        <div>
+        <div className='dashboard'>
             <h1>Dashboard</h1>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to={`${url}/projects`}>Projects</Link>
+                    </li>
+                    <li>
+                        <Link to={`${url}/tasks`}>Tasks</Link>
+                    </li>
+                    <li>
+                        <Link to={`${url}/messages`}>Messages</Link>
+                    </li>
+                </ul>
+            </nav>
+            <Switch>
+                <Route exact path={path}>
+                    <h2>My Stuff</h2>
+                </Route>
+                <Route path={`${path}/projects`} component={Projects} />
+                <Route path={`${path}/tasks`} component={Tasks} />
+                <Route path={`${path}/messages`} component={Messages} />
+            </Switch>
         </div>
-    )
-}
+    );
+};
+
+export default Dashboard;
