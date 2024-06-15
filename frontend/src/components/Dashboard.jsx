@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
 import Projects from './Projects';
 import Tasks from './Tasks';
-import Comments from './Comments';
+import Comments from './Comments.jsx';
 
 const Dashboard = () => {
     let { path, url } = useRouteMatch();
