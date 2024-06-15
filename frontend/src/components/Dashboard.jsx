@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
 import Projects from './Projects';
 import Tasks from './Tasks';
-import Messages from './Messages';
+import Comments from './Comments';
 
 const Dashboard = () => {
     let { path, url } = useRouteMatch();
@@ -19,7 +19,7 @@ const Dashboard = () => {
                         <Link to={`${url}/tasks`}>Tasks</Link>
                     </li>
                     <li>
-                        <Link to={`${url}/messages`}>Messages</Link>
+                        <Link to={`${url}/messages`}>Comments</Link>
                     </li>
                 </ul>
             </nav>
@@ -29,7 +29,7 @@ const Dashboard = () => {
                 </Route>
                 <Route path={`${path}/projects`} component={Projects} />
                 <Route path={`${path}/tasks`} component={Tasks} />
-                <Route path={`${path}/messages`} component={Messages} />
+                <Route path={`${path}/messages`} component={Comments} />
             </Switch>
         </div>
     );
