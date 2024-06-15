@@ -6,9 +6,9 @@ const { Sequelize } = require('sequelize');
 module.exports = {
   up: async (queryInterface, Sequelize)=>{
     await queryInterface.bulkInsert('Statuses', [
-      { name: 'pending', createdAt: new Date(), updatedAt: new Date() },
-      { name: 'in-progress', createdAt: new Date(), updatedAt: new Date() },
-      { name: 'completed', createdAt: new Date(), updatedAt: new Date() },
+      { id: 1, name: 'pending', createdAt: new Date(), updatedAt: new Date() },
+      { id: 2, name: 'in-progress', createdAt: new Date(), updatedAt: new Date() },
+      { id: 3, name: 'completed', createdAt: new Date(), updatedAt: new Date() },
 
     ], {});
   },

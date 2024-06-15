@@ -1,4 +1,4 @@
-export default function ClientForm() {
+export default function Client() {
   return (
     <main>
       <h1>Client Profile</h1>
