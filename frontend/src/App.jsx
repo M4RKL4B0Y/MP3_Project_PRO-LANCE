@@ -1,17 +1,13 @@
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import Browse from "./components/Browse/Browse";
-import Dashboard from "./components/Dashboard/Dashboard";
-import Gallery from "./components/Gallery/Gallery";
+import Client from "./users/client";
 
 function App() {
   return (
     <div className="App">
-      {/* <Client /> */}
-      <Dashboard />
-      <Browse />
-      <Gallery />
+      <Client />
+      
       {/* <Prolancer /> 
       <Request />
       <Project />
