@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import api  from '../baseURL';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import api from '../baseURL';
 
-const newProfile = () => {
-    const [profileData, setProfileData] = useState ({
+const NewProfile = () => {
+    const [profileData, setProfileData] = useState({
         title: '',
         trade_offering: '',
         skills: '',
@@ -13,20 +14,20 @@ const newProfile = () => {
         image: ''
     });
 
-    const history = useHistory();
-    const query = useQuery();
-    const freelancer_id = query.get('freelancer_id');
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const freelancer_id = searchParams.get('freelancer_id');
 
     const handleChange = (e) => {
         setProfileData({ ...profileData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit  = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await api.post('/profiles', { ...profileData, freelancer_id });
             console.log(response.data);
-            history.push('/dashboard');
+            navigate('/dashboard');
         } catch (error) {
             console.error(error.response ? error.response.data : 'An error occurred');
         }
@@ -36,15 +37,16 @@ const newProfile = () => {
         <form onSubmit={handleSubmit}>
             <label htmlFor='title'>Title</label>
             <input 
-            type='text'
-            name='title'
-            value={profileData.title}
-            onChange={handleChange}
-            placeholder='Title'
-            required/>
+                type='text'
+                name='title'
+                value={profileData.title}
+                onChange={handleChange}
+                placeholder='Title'
+                required
+            />
             <label htmlFor='trade_offering'>Trade Offering</label>
             <input 
-            type='text' 
+                type='text' 
                 name='trade_offering' 
                 id='trade_offering'
                 value={profileData.trade_offering} 
@@ -110,4 +112,4 @@ const newProfile = () => {
     );
 };
 
-export default newProfile;
+export default NewProfile;

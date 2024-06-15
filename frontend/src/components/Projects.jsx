@@ -10,14 +10,12 @@ const Projects = () => {
                 const response = await api.get('/projects', {
                     headers: {
                         'pl-access-token': localStorage.getItem('token')
-                        
                     }
                 });
-            setProjects(response.data);
+                setProjects(response.data);
             } catch (error) {
-                console.error(error.response ? error.response.data : 'There was an error.Please contact support');
+                console.error(error.response ? error.response.data : 'There was an error. Please contact support');
             }
-
         };
         fetchProjects();
     }, []);
@@ -27,7 +25,7 @@ const Projects = () => {
             <h1>My Projects</h1>
             <ul>
                 {projects.map(project => (
-                    <li key={project_id}>
+                    <li key={project.id}>
                         {project.title}
                     </li>
                 ))}

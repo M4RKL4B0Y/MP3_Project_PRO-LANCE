@@ -10,14 +10,12 @@ const Tasks = () => {
                 const response = await api.get('/tasks', {
                     headers: {
                         'pl-access-token': localStorage.getItem('token')
-                        
                     }
                 });
-            setTasks(response.data);
+                setTasks(response.data);
             } catch (error) {
-                console.error(error.response ? error.response.data : 'There was an error.Please contact support');
+                console.error(error.response ? error.response.data : 'There was an error. Please contact support');
             }
-
         };
         fetchTasks();
     }, []);
@@ -27,7 +25,7 @@ const Tasks = () => {
             <h1>My Tasks</h1>
             <ul>
                 {tasks.map(task => (
-                    <li key={task_id}>
+                    <li key={task.id}>
                         {task.title}
                     </li>
                 ))}
