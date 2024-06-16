@@ -10,7 +10,7 @@ import InvoiceForm from '../frontend/src/forms/InvoiceForm.jsx';
 import ProjectForm from '../frontend/src/forms/ProjectForm.jsx';
 import ProlancerForm from '../frontend/src/forms/ProlancerForm.jsx';
 import RequestForm from '../frontend/src/forms/RequestForm.jsx';
-
+import './App.css';
 function App() {
   return (
     <Router>
