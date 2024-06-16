@@ -46,6 +46,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
+<<<<<<< HEAD
+                model: 'TaskType',
+                key: 'id'
+            }
+=======
                 model: 'Tasks',
                 key: 'id'
             }
@@ -57,6 +62,7 @@ module.exports = (sequelize, DataTypes) => {
               model: 'Statuses',
               key: 'id'
             }
+>>>>>>> 2cbf268ff8565b8c1da04b8db0268998fe5e6059
         }
 
     }, {});

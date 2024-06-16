@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => { 
     const User = sequelize.define('User', {
-        name: { 
+        username: { 
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -36,9 +36,15 @@ module.exports = (sequelize, DataTypes) => {
         password: {
             type: DataTypes.STRING,
             allowNull: false
+<<<<<<< HEAD
+        }, 
+        role_id: {
+            type: DataTypes.ENUM('client', 'freelancer', 'admin'), 
+=======
         },
         role_id: {
             type: DataTypes.ENUM('client', 'freelancer', 'admin'),
+>>>>>>> 2cbf268ff8565b8c1da04b8db0268998fe5e6059
             allowNull: false
         }
     }, {
