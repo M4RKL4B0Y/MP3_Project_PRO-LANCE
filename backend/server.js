@@ -4,7 +4,6 @@ console.log('Secret Key:', process.env.SECRET_KEY);
 const express = require('express');
 const cors = require('cors');
 const { Sequelize } = require('sequelize');
-const bodyParser = require('body-parser');
 const path = require('path');
 const config = require('./config/config.json')[process.env.NODE_ENV || 'development'];
 
@@ -16,29 +15,25 @@ const commentRoutes = require('./routes/commentRoutes');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
 app.use(express.json());
 app.use(cors({
     origin: 'http://localhost:5173', 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
-app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api', commentRoutes);
 
-app.use(express.static(path.join(__dirname, 'frontend/build')));
-
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
+    res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
 });
-
 
 const sequelize = new Sequelize(config.database, config.username, config.password, {
     host: config.host,
