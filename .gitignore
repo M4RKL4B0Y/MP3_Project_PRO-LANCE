@@ -9,7 +9,7 @@ npm-debug.log*
 # Environment variables
 .env
 
-# Database config
+# Database configy
 backend/config/config.json
 
 # Optional npm cache directory
@@ -38,3 +38,13 @@ backend/config/config.json
 
 # VS Code directory
 .vscode/
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
