@@ -1,82 +1,133 @@
-'use strict'
-
-const { DataTypes } = require('sequelize');
+"use strict";
 
 module.exports = {
-    up: async (queryInterface, Sequelize) => {
-        await queryInterface.createTable('Projects', {
-            id: {
-                allowNull: false,
-                autoIncrement: true,
-                primaryKey: true,
-                type: DataTypes.INTEGER
-            },
-            title: {
-                type: DataTypes.TEXT,
-                allowNull:false,
-            },
-            description: {
-                type: DataTypes.TEXT
-            },
-            estimate: {
-                type: DataTypes.DECIMAL(10, 2),
-                allowNull: false
-              },
-              estimate_id: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                references: {
-                  model: 'Estimates',
-                  key: 'id'
-                }
-              },
-            startDate: {
-                type: DataTypes.DATE,
-                allowNull: false
-            },
-            endDate: {
-                type: DataTypes.DATE,
-                allowNull: false
-            },
-             status_id: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                references: {
-                    model: 'Statuses',
-                    key: 'id'
-                }
-                
-                },
-                client_id: {
-                    type: DataTypes.INTEGER,
-                    allowNull: false,
-                    references: {
-                        model: 'Users',
-                        key: 'id'
-                    }
-                },
-                freelancer_id: {
-                    type: DataTypes.INTEGER,
-                    allowNull: false,
-                    references: {
-                        model: 'Users',
-                        key: 'id'
-                    }
-                    },
-                    createdAt: {
-                        allowNull: false,
-                        type: DataTypes.DATE,
-                        defaultValue: Sequelize.NOW
-                    },
-                    updatedAt: {
-                        allowNull: false,
-                        type: DataTypes.DATE,
-                        defaultValue: Sequelize.NOW
-                }
-                });
-            },
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable("Projects", {
+      id: {
+        allowNull: false,
 
-            down: async (queryInterface, Sequelize) => {
-                await queryInterface.dropTable('Projects');
-            }
-        };
+        autoIncrement: true,
+
+        primaryKey: true,
+
+        type: Sequelize.INTEGER,
+      },
+
+      title: {
+        type: Sequelize.TEXT,
+
+        allowNull: false,
+      },
+
+      description: {
+        type: Sequelize.TEXT,
+
+        allowNull: false,
+      },
+
+      startDate: {
+        type: Sequelize.DATE,
+
+        allowNull: false,
+      },
+
+      endDate: {
+        type: Sequelize.DATE,
+
+        allowNull: false,
+      },
+
+      estimate: {
+        type: Sequelize.DECIMAL(10, 2),
+
+        allowNull: true,
+      },
+
+      status_id: {
+        type: Sequelize.INTEGER,
+
+        allowNull: true,
+
+        references: {
+          model: "Statuses",
+
+          key: "id",
+        },
+      },
+
+      client_id: {
+        type: Sequelize.INTEGER,
+
+        allowNull: true,
+
+        references: {
+          model: "Users",
+
+          key: "id",
+        },
+      },
+
+      estimate_id: {
+        type: Sequelize.INTEGER,
+
+        allowNull: true,
+      },
+
+      freelancer_id: {
+        type: Sequelize.INTEGER,
+
+        allowNull: true,
+
+        references: {
+          model: "Users",
+
+          key: "id",
+        },
+      },
+
+      type_id: {
+        type: Sequelize.INTEGER,
+
+        allowNull: false,
+
+        references: {
+          model: "TaskType",
+
+          key: "id",
+        },
+      },
+
+      profile_id: {
+        type: Sequelize.INTEGER,
+
+        allowNull: true,
+
+        references: {
+          model: "Profiles",
+
+          key: "id",
+        },
+      },
+
+      createdAt: {
+        allowNull: false,
+
+        type: Sequelize.DATE,
+
+        defaultValue: Sequelize.NOW,
+      },
+
+      updatedAt: {
+        allowNull: false,
+
+        type: Sequelize.DATE,
+
+        defaultValue: Sequelize.NOW,
+      },
+    });
+  },
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable("Projects");
+  },
+};
