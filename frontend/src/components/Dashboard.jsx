@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Link, Route, Routes } from 'react-router-dom';
-import "./Dashboard.css";
+import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
+import { Link, Route, Routes } from 'react-router-dom';
 import Projects from './Projects';
 import Tasks from './Tasks';
 import Comments from './Comments';
 import RequestForm from '../forms/RequestForm';
+import './dashboard/Dashboard.css';
 
 function Dashboard() {
   return (
@@ -17,11 +17,11 @@ function Dashboard() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ms-auto">
-                <Nav.Link as={Link} to="/">Dashboard</Nav.Link>
-                <Nav.Link as={Link} to="projects">Projects</Nav.Link>
-                <Nav.Link as={Link} to="tasks">Tasks</Nav.Link>
-                <Nav.Link as={Link} to="comments">Comments</Nav.Link>
-                <Nav.Link as={Link} to="newRequest">New Request</Nav.Link>
+                <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
+                <Nav.Link as={Link} to="/projects">Projects</Nav.Link>
+                <Nav.Link as={Link} to="/tasks">Tasks</Nav.Link>
+                <Nav.Link as={Link} to="/comments">Comments</Nav.Link>
+                <Nav.Link as={Link} to="/newRequest">New Request</Nav.Link>
                 <Nav.Link href="#account">Account</Nav.Link>
                 <form className="form-inline my-2 my-lg-0">
                   <input
@@ -44,22 +44,20 @@ function Dashboard() {
       </div>
 
       <div className="jumbotron">
-        <h1 className="display-4">Hey Kyle</h1>
+        <h1 className="display">Manage Your Projects Here</h1>
         <p className="lead">
-          Discover professionals in your area for your projects, tasks or
-          errands.
+          Discover professionals in your area for your projects, tasks or errands.
         </p>
         <hr className="my-4" />
         <p>
-          Are you a professional yourself? Find work as a freelancer for
-          projects in your area.
+          Are you a professional yourself? Find work as a freelancer for projects in your area.
         </p>
         <a className="btn btn-primary btn-lg" href="#" role="button">
           Learn more
         </a>
       </div>
 
-      <div>
+      <div className="content">
         <Routes>
           <Route path="projects" element={<Projects />} />
           <Route path="tasks" element={<Tasks />} />
@@ -72,11 +70,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-
-
-
-
-
-
-
-

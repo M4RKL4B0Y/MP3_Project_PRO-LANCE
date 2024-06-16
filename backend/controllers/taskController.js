@@ -3,6 +3,7 @@ const { Task, Estimate, User } = require('../models');
 // Create a new task
 exports.createTask = async (req, res) => {
     try {
+        console.log("Create Task Request Received");
         const task = await Task.create({ ...req.body, project_id: req.params.projectId });
         res.status(201).json(task);
     } catch (err) {
