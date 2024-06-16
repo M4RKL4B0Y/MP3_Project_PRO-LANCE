@@ -5,9 +5,9 @@ import Projects from './Projects';
 import Tasks from './Tasks';
 import Comments from './Comments';
 import RequestForm from '../forms/RequestForm';
-import './dashboard/Dashboard.css';
+import './Dashboard.css';
 
-function Dashboard() {
+function Login() {
   return (
     <main>
       <div>
@@ -69,4 +69,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Login;

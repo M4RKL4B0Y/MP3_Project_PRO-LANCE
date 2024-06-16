@@ -1,9 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-  const Projecgt = sequelize.define('Project', {
-=======
-//     const Project = sequelize.define('Project', {
-
+  const Project = sequelize.define('Project', {
       title: {
           type: DataTypes.TEXT,
           allowNull: false
@@ -104,4 +101,4 @@ module.exports = (sequelize, DataTypes) => {
   };
 
 //   return Project;
-};
+// };

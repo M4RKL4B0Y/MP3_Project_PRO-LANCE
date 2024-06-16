@@ -1,0 +1,41 @@
+/* src/App.css */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .jumbotron {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    border-radius: 0.5rem;
+  }
+  
+  .feature-card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .feature-card img {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+  
+  .feature-card-body {
+    padding: 1.5rem;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }

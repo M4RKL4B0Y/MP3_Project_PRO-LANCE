@@ -1,12 +1,12 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Dashboard from "../components/dashboard/Dashboard";
+import Dashboard from "../components/Dashboard";
 // import Browse from "../components/browse/Browse";
 import Gallery from "../components/gallery/Gallery";
 
 // Your component code here
 
-function App() {
+function ClientPage() {
   return (
     <div>
       <Dashboard />
@@ -18,4 +18,4 @@ function App() {
   );
 }
 
-export default App;
+export default ClientPage;

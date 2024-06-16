@@ -46,11 +46,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-
-//                 model: 'TaskType',
-//                 key: 'id'
-            }
-
                 model: 'Tasks',
                 key: 'id'
             }

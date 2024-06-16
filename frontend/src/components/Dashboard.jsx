@@ -5,7 +5,7 @@ import Projects from './Projects';
 import Tasks from './Tasks';
 import Comments from './Comments';
 import RequestForm from '../forms/RequestForm';
-import './dashboard/Dashboard.css';
+import './Dashboard.css';
 
 function Dashboard() {
   return (
@@ -22,7 +22,10 @@ function Dashboard() {
                 <Nav.Link as={Link} to="/tasks">Tasks</Nav.Link>
                 <Nav.Link as={Link} to="/comments">Comments</Nav.Link>
                 <Nav.Link as={Link} to="/newRequest">New Request</Nav.Link>
-                <Nav.Link href="#account">Account</Nav.Link>
+                <Nav.Link as={Link} to="/account">Account</Nav.Link>
+                <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
+                
+               
                 <form className="form-inline my-2 my-lg-0">
                   <input
                     className="form-control mr-sm-2"
@@ -48,13 +51,14 @@ function Dashboard() {
         <p className="lead">
           Discover professionals in your area for your projects, tasks or errands.
         </p>
-        <hr className="my-4" />
+        {/* <hr className="my-4" />
         <p>
           Are you a professional yourself? Find work as a freelancer for projects in your area.
         </p>
         <a className="btn btn-primary btn-lg" href="#" role="button">
           Learn more
-        </a>
+        </a> */}
+
       </div>
 
       <div className="content">
