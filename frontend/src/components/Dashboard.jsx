@@ -25,7 +25,7 @@ const Dashboard = () => {
   }, []);
 
   const handleLogout = () => {
-    // Perform logout operation
+  
     navigate('/login');
   };
 
