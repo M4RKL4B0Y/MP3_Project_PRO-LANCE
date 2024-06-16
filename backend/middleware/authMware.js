@@ -17,8 +17,12 @@ const verifyToken = (req, res, next) => {
         }
         
         req.user_id = decoded.id;
+
+    
+
         console.log('Token verified, user ID:', req.user_id);
         
+
         next();
     });
 };
