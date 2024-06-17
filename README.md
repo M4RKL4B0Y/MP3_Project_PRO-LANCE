@@ -82,6 +82,12 @@ Pro-Lance CRM is a comprehensive platform designed to manage projects, tasks, an
 1. In the root directory, run the following command to start both backend and frontend servers:
    
    npm run dev
+
+## Left to Do's
+
+Migrations
+
+Deployment
    
 
 ## Testing
