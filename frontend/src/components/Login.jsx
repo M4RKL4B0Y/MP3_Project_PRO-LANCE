@@ -1,6 +1,7 @@
+// frontend/src/components/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../api'; // Ensure this path matches your actual file structure
+import api from '../baseURL'; 
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -18,9 +19,15 @@ const Login = () => {
     try {
       const response = await api.post('/auth/login', formData);
       console.log(response.data);
-      navigate('/dashboard');
+   
+      if (response.data.token) {
+     
+        localStorage.setItem('token', response.data.token);
+        navigate('/dashboard');
+      }
     } catch (error) {
       console.error(error.response ? error.response.data : 'An error occurred');
+     
     }
   };
 

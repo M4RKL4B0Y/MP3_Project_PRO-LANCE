@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import api from '../baseURL';
 
 const RequestForm = () => {
   const [types, setTypes] = useState([]);
-  const [selectedType, setSelectedType] = useState(''); 
-  const [description, setDescription] = useState('');
   const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [estimate, setEstimate] = useState('');
-  const [status_id, setStatusID] = useState('');
   const [client_id, setClientID] = useState('');
   const [estimate_id, setEstimateID] = useState('');
   const [type_id, setTypeID] = useState('');
@@ -19,7 +16,7 @@ const RequestForm = () => {
   useEffect(() => {
     const fetchTypes = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/types');
+        const response = await api.get('/types');
         setTypes(response.data);
       } catch (error) {
         console.error('Error fetching types:', error);
@@ -36,6 +33,7 @@ const RequestForm = () => {
         description,
         startDate,
         endDate,
+        estimate,
         client_id,
         estimate_id,
         type_id,

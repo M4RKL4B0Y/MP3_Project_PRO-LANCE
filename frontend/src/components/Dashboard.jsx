@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchProjects, fetchProfiles } from '../baseURL';
-import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import './dashboard/Dashboard.css';
 
 const Dashboard = () => {
@@ -25,8 +25,7 @@ const Dashboard = () => {
   }, []);
 
   const handleLogout = () => {
-  
-    navigate('/login');
+    navigate('/auth/login');
   };
 
   return (
@@ -37,8 +36,7 @@ const Dashboard = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
-              <Nav.Link as={Link} to="/register">New Project</Nav.Link>
+              <Nav.Link as={Link} to="../forms/RequestForm.jsx">New Project</Nav.Link>
               <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
             </Nav>
           </Navbar.Collapse>
