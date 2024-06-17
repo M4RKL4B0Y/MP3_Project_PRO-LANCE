@@ -43,3 +43,13 @@ exports.login = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+exports.logout = async (_req, res) => {
+    try {
+        res.json({ message: 'Logged out' });
+
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
