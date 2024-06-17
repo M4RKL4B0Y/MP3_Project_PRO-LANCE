@@ -9,10 +9,18 @@ Pro-Lance CRM is a comprehensive platform designed to manage projects, tasks, an
 
 - User Authentication: Secure login and registration for clients, freelancers, and admins.
 - Project Management: Create, view, update, and delete projects.
+- Role-based Access: Different functionalities for clients, freelancers, and admins.
+
+
+## Note:
+
+-The frontend build was not completed.
+-The backend was completed and can be tested in Postman successfully, test steps are listed below.
+-Future features:
+
 - Comments and Worknotes: Add comments and work notes to projects and tasks.
 - Invoicing: Generate and manage invoices for projects and tasks.
 - Profile Management: Create and manage freelancer profiles, including skills, experience, and trade offerings.
-- Role-based Access: Different functionalities for clients, freelancers, and admins.
 
 
 ## Prerequisites
@@ -91,15 +99,91 @@ Pro-Lance CRM is a comprehensive platform designed to manage projects, tasks, an
 1. Ensure your backend server is running.
 2. Open Postman and create a new request.
 3. Set the request method to POST and the URL to `http://localhost:3000/api/auth/register`.
-4. In the body tab, select raw and JSON format, then provide the user registration details:
-   json
 
-In the body tab, select raw and JSON format, then provide the user registration details:
+### 1. User Registration
+
+**Endpoint:** `POST /api/auth/signup`
+
+**Request Body:**
 
 ```json
 {
-  "name": "Willard Smith",
-  "username": "waynewonder"
+  "username": "",
+  "email": "",
+  "password": "",
+  "role_id": "client"
+}
+```
+
+**Expected Response:**
+
+```json
+{
+  "message": "Account created"
+}
+```
+
+### 2. User Login
+
+**Endpoint:** `POST /api/auth/login`
+
+**Request Body:**
+
+```json
+{
+  "email": "",
+  "password": ""
+}
+```
+
+**Expected Response:**
+
+```json
+{
+  "id": 1,
+  "username": "",
+  "email": "",
+  "role": "client",
+  "accessToken": "JWT_TOKEN"
+}
+```
+
+### 3. Create Project
+
+**Endpoint:** `POST /api/projects`
+
+**Request Body:**
+
+```json
+{
+  "title": "",
+  "description": "",
+  "startDate": "",
+  "endDate": "",
+  "estimate": ,
+  "status_id": 1,
+  "client_id": 1,
+  "estimate_id": 1,
+  "type_id": 1
+}
+```
+
+**Expected Response:**
+
+```json
+{
+  "id": 1,
+  "title": "",
+  "description": "",
+  "startDate": "",
+  "endDate": "",
+  "estimate": ,
+  "status_id": 1,
+  "client_id": 1,
+  "estimate_id": 1,
+  "type_id": 1,
+  "createdAt": "",
+  "updatedAt": ""
 }
 
    
