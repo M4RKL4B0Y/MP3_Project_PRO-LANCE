@@ -1,0 +1,21 @@
+.dashboard {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  h1, h2 {
+    color: #333;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    background: hsl(19, 71%, 58%);
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }

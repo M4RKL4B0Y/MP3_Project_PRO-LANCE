@@ -1,10 +1,7 @@
-require('dotenv').config();
-console.log('Secret Key:', process.env.SECRET_KEY);
-
 const express = require('express');
 const cors = require('cors');
-const { Sequelize } = require('sequelize');
 const path = require('path');
+const { Sequelize } = require('sequelize');
 const config = require('./config/config.json')[process.env.NODE_ENV || 'development'];
 
 const authRoutes = require('./routes/authRoutes');
@@ -17,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173', 
+    origin: 'http://localhost:3001', // Update this if your frontend runs on a different port during development
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
@@ -29,10 +26,11 @@ app.use('/api/projects', projRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api', commentRoutes);
 
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
 });
 
 const sequelize = new Sequelize(config.database, config.username, config.password, {
