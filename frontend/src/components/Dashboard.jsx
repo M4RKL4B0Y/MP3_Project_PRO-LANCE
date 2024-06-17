@@ -6,8 +6,10 @@ import Tasks from './Tasks';
 import Comments from './Comments';
 import RequestForm from '../forms/RequestForm';
 import './Dashboard.css';
+import Logout from './Logout';
 
 function Dashboard() {
+  
   return (
     <main>
       <div>
@@ -16,7 +18,7 @@ function Dashboard() {
             <Navbar.Brand href="#home">PROLANCE</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="ms-auto">
+              <Nav className="m-auto">
                 <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
                 <Nav.Link as={Link} to="/projects">Projects</Nav.Link>
                 <Nav.Link as={Link} to="/tasks">Tasks</Nav.Link>
@@ -51,13 +53,13 @@ function Dashboard() {
         <p className="lead">
           Discover professionals in your area for your projects, tasks or errands.
         </p>
-        {/* <hr className="my-4" />
+        <hr className="my-4" />
         <p>
           Are you a professional yourself? Find work as a freelancer for projects in your area.
         </p>
         <a className="btn btn-primary btn-lg" href="#" role="button">
           Learn more
-        </a> */}
+        </a> 
 
       </div>
 
@@ -67,6 +69,7 @@ function Dashboard() {
           <Route path="tasks" element={<Tasks />} />
           <Route path="comments" element={<Comments />} />
           <Route path="newRequest" element={<RequestForm />} />
+          <Route path="logout" element={<Logout />} />
         </Routes>
       </div>
     </main>

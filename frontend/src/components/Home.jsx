@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Navbar, Container, Nav } from "react-bootstrap";
 // import Dashboard from './components/Dashboard';
 import Login from "./Login";
 // import Register from './forms/RequestForm';
@@ -13,120 +14,49 @@ import "../App.css";
 function Home() {
   return (
     <div>
-      <div className="container-fluid">
-        <header>
-          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <Link className="navbar-brand" to="/">
-              PROLANCE
-            </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav mr-auto">
-                <li className="nav-item dropdown">
-                  <Link
-                    className="nav-link dropdown-toggle"
-                    to="#"
-                    id="navbarDropdownLeft"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Menu
-                  </Link>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdownLeft"
-                  >
-                    {/* <Link className="dropdown-item" to="/browse">
-                      Browse
-                    </Link>
-                    <Link className="dropdown-item" to="/dashboard">
-                      Dashboard
-                    </Link>
-                    <Link className="dropdown-item" to="/gallery">
-                      Gallery
-                    </Link> */}
-                    <Link className="dropdown-item" to="/login">
-                      Login
-                    </Link>
-                    <Link className="dropdown-item" to="/register">
-                      Register
-                    </Link>
-                  </div>
-                </li>
-              </ul>
-              {/* <ul className="navbar-nav">
-                <li className="nav-item dropdown">
-                  <Link
-                    className="nav-link dropdown-toggle"
-                    to="#"
-                    id="navbarDropdownRight"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Forms
-                  </Link>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdownRight"
-                  >
-                    <Link className="dropdown-item" to="/client-form">
-                      Client Form
-                    </Link>
-                    <Link className="dropdown-item" to="/invoice-form">
-                      Invoice Form
-                    </Link>
-                    <Link className="dropdown-item" to="/project-form">
-                      Project Form
-                    </Link>
-                    <Link className="dropdown-item" to="/prolancer-form">
-                      Prolancer Form
-                    </Link>
-                    <Link className="dropdown-item" to="/request-form">
-                      Request Form
-                    </Link>
-                  </div>
-                </li>
-              </ul> */}
-            </div>
-          </nav>
-        </header>
-        <main className="container mt-5">
-          
-          <div className="jumbotron">
-            <h1 className="display">Welcome to PROLANCE</h1>
-            <h2 className="display"></h2>
-            <p className="lead">
+      <main className="container mt-5">
+        <div>
+          <Navbar expand="lg" className="bg-body-tertiary">
+            <Container>
+              <Navbar.Brand href="#home">
+                <h1>PROLANCE</h1>
+              </Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="ms-auto">
+
+                  <Nav.Link as={Link} to="/register">
+                    Register
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/login">
+                    Login
+                  </Nav.Link>
+
+                  <form className="form-inline my-2 my-lg-0"></form>
+                </Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+        </div>
+
+        <div className="jumbotron">
+          <h1 className="display">Welcome to PROLANCE</h1>
+          <h2 className="display"></h2>
+          <p className="lead">
             Where you can find professional help or professional work.
-            </p>
-            <a className="btn btn-primary btn-lg" href="#" role="button">
-              Register
-            </a>
-            </div>
-            <div className="jumbotron">
-            <h1 className="display">Alreay a Prolancer?</h1>
-            <p className="lead">
-              
-            </p>
-            <a className="btn btn-primary btn-lg" href="#" role="button">
-              Login
-            </a>
-          </div>
-        </main>
-      </div>
+          </p>
+          <a className="btn btn-primary btn-lg" href="/register" role="button">
+            Register
+          </a>
+        </div>
+        <div className="jumbotron">
+          <h1 className="display">Alreay a Prolancer?</h1>
+          <p className="lead"></p>
+          <a className="btn btn-primary btn-lg" href="/login" role="button">
+            Login
+          </a>
+        </div>
+      </main>
     </div>
   );
 }
