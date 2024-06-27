@@ -5,9 +5,9 @@ const config = require('../config/authConfig');
 
 exports.register = async (req, res) => {
     try {
-        const { name, username, email, password, role_id } = req.body;
+        const { username, email, password, role_id } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await User.create({ name, username, email, password: hashedPassword, role_id });
+        const user = await User.create({ username, email, password: hashedPassword, role_id });
         res.status(201).json(user);
     } catch (err) {
         res.status(500).json({ error: err.message });

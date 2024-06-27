@@ -38,3 +38,8 @@ backend/config/config.json
 
 # VS Code directory
 .vscode/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

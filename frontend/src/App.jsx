@@ -1,30 +1,17 @@
-// import React, { useState, useEffect } from "react";
-// import "./App.css";
-// require('dotenv').config()
-import Prolancer from "./forms/ProlancerForm";
-import Client from "./forms/ClientForm";
-import Project from "./forms/ProjectForm";
-import Request from "./forms/RequestForm";
-import Invoice from "./forms/InvoiceForm";
-import Submit from "./components/Submit";
-// import Button from "./components/Button";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Dashboard from './components/Dashboard';
 
-function App() {
-  return (
-    <div className="App">
-      <Client />
-      
-      {/* <Prolancer /> 
-      <Request />
-      <Project />
-      <Invoice />
-      <Submit /> */}
-
-      {/* <Button
-           freelancer={freelancer}
-        /> */}
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+        </Router>
+    );
+};
 
 export default App;
